@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - www.codingnepalweb.com -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StarPLUS Tuition</title>
+    <style>
+      /* Importing Google font - Open Sans */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  background-color: #290849;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e2d6ef;
+  margin: 0 auto;
+  padding: 20px 15px;
+}
+
+.navbar .links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 40px;
+}
+
+.navbar .links a {
+  font-weight: 800;
+  text-decoration: none;
+  color: #111;
+  padding: 10px 0;
+  transition: 0.2s ease;
+}
+
+.navbar .links a:hover {
+  color: #ffd524;
+}
+
+/* General button styling */
+.navbar .buttons a {
+  text-decoration: none;
+  color: #111;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 10px 10px;
+  transition: 0.2s ease;
+  border: 2px solid #ffd524; /* Adjusted border thickness and color */
+  background-color: #ffd524; /* Background color */
+  border-radius: 0.375rem;
+  text-align: center;
+  display: inline-block; /* Ensures proper padding and border */
+  margin-right: 30px; /* Applies right margin to all buttons */
+}
+
+/* Removes margin from the last button */
+.navbar .buttons a:last-child {
+  margin-right: 0;
+}
+
+/* Hover effects for both buttons */
+.navbar .buttons a:hover {
+  background-color: #e2d6ef; /* New background color on hover */
+  color: #111; /* Text color changes to white on hover */
+  opacity: 0.7; /* Transparency set to 70% */
+  transition: 0.2s ease; /* Smooth transition for hover effects */
+}
+
+.hero-section .hero {
+  margin-top: 100px;
+  max-width: 100%;
+  color: #fff;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.hero {
+  text-align: center; /* Center the content horizontally */
+  display: flex;
+  justify-content: center; /* Center content horizontally using Flexbox */
+  align-items: center; /* Center content vertically using Flexbox */
+  /* Make the hero take the full height of the viewport */
+}
+
+.hero p {
+  font-size: 20px;
+  font-weight: 1000;
+  margin-bottom: 20px;
+  color: white;
+  white-space: pre-wrap; /* This will allow the browser to preserve whitespaces and line breaks */
+}
+
+.hero .title {
+  text-align: center;
+  font-family: "Cambria";
+  font-size: 40px;
+  color: black;
+  padding: 5px 20px;
+  background-color: #ffd524;
+}
+
+.hero-section .buttons {
+  margin-top: 40px;
+}
+
+.hero-section .buttons a {
+  text-decoration: none;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: 0.2s ease;
+  display: inline-block;
+}
+
+.hero-section .buttons a:not(:last-child) {
+  margin-right: 15px;
+}
+
+.buttons .join {
+  background-color: #47b2e4;
+}
+
+.hero-section .buttons .learn {
+  border: 1px solid #fff;
+  border-radius: 0.375rem;
+}
+
+.hero-section .buttons a:hover {
+  background-color: #47b2e4;
+}
+
+/* Hamburger menu styles */
+#menu-toggle {
+  display: none;
+}
+
+#hamburger-btn {
+  font-size: 1.8rem;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  order: 1;
+}
+
+@media screen and (max-width: 1023px) {
+  .navbar .logo a {
+    font-size: 1.5rem;
+  }
+
+  .links {
+    position: fixed;
+    left: -100%;
+    top: 75px;
+    width: 100%;
+    height: 100vh;
+    padding-top: 50px;
+    background: #175d69;
+    flex-direction: column;
+    transition: 0.3s ease;
+  }
+
+  .navbar #menu-toggle:checked ~ .links {
+    left: 0;
+  }
+
+  .navbar #hamburger-btn {
+    display: block;
+  }
+
+  .header .buttons {
+    display: none;
+  }
+
+  .hero-section .hero {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .hero-section img {
+    display: none;
+  }
+
+  .test-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 95vh;
+    padding: 0 5px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+      h2 {color : yellow;
+          text-align: center;
+          background-color:#290849;
+          font-family:'Belleza';
+          font-size: 20px;
+          padding: 5px;
+          }
+          
+          *{
+  box-sizing:border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  padding: 64px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both
+}
+
+.column-66 {
+  float: left;
+  width: 50%;
+  height :max-content;
+  padding: 10px;
+  /*background-color: grey;*/
+}
+
+.column-33 {
+  float: right;
+  /*background-color: white;*/
+  width: 50%;
+  height :max-content;
+  padding: 10px;
+}
+
+.large-font {
+  font-size: 48px;
+}
+
+.xlarge-font {
+  font-size: 64px
+}
+
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+  .column-66,
+  .column-33 {
+    width: 100%;
+    text-align: center;
+  }
+  img {
+    margin: auto;
+  }
+
+}
+    </style>
+  </head>
+  <body>
+    <header class="header">
+       <h2>SHINE BRIGHT LIKE A STAR</h2>
+      <nav class="navbar">
+        <div class="gambar">
+        <img src="StarPlus2.png" alt="logo" style="width:70%;height:70px;margin: 0px 0px 0px 80px;">
+        </div>
+        <ul class="links">
+          <li><a href="#" id="home">Home</a></li>
+          <li><a href="#" id="timetable">Timetable</a></li>
+          <li><a href="#" id="package-fees">Package & Fees</a></li>
+          <li><a href="#" id="tutor">Tutor</a></li>
+          <li><a href="#" id="guide">Guide</a></li>
+        </ul>        
+        <div class="buttons">
+          <a href="#" class="contactus" id="contact-us-btn">Contact us</a>
+          <a href="#" class="register" id="register-btn">Register</a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container" >
+      <div class="row">
+        <div class="column-66">
+    <section class="hero-section">
+      
+      <div class="hero">
+        <p>
+          <span class="title">MISSION :</span>
+          &nbsp;&nbsp;
+          1. Provides students with personalized and effective tutoring<br>
+          2. Promote sustainable and flexible learning through an interactive platform.<br>
+           &nbsp;&nbsp;3. Provide high-quality learning experiences to students around the world.
+          <br>
+          <span class="title">VISION :</span><br>
+          &nbsp;&nbsp;1. To become the leading online learning platform recognized for innovation and quality.<br>
+          2. To be a major catalyst in transforming the way people learn and teach by leveraging the latest technology and teaching methods.<br>
+          3. To provide educational access to all without economic barrier.
+        </p>
+      </div>
+    </div>
+  
+      <div class="column-33" >
+        <img src="StarPlus.gif" alt="logo" style="width:400px; height:400px; margin: 300px 0px 0px 90px;">
+      </div>
+    </div>
+  </div>
+
+     
+    </section>
+    <script src="script.js"></script>
+
+<!-- Clarity Section -->
+<div class="container" style="background-color:transparent;
+background-image: linear-gradient(160deg, #85FFC9 0%, #FF74E3 100%);">
+      <h1 class="xlarge-font"><b>TESTIMONI/FEEDBACK</b></h1>
+      <h1 class="large-font" style="color:red;"><b>What People Says</b></h1><br><br>
+    <img src="FEEDBACK/feedback1.jpg" alt="logo" style="width:400px; height:400px;"><br>
+    <img src="FEEDBACK/feedback2.jpeg" alt="logo" style="width:400px; height:400px;"><br>
+</div>
+    </div>
+  </body>
+</html>

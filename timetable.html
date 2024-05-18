@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Timetable</title>
+    <style>
+        /* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+.card-body {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-tabs {
+    border-bottom: 2px solid #ccc;
+}
+
+.navbar-nav {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-item {
+    margin-bottom: 5px;
+    display:inline;
+    grid-area: ;
+    padding: 8px 16px;
+    border: 1px solid #007bff;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+
+.nav-item:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: #fff;
+}
+
+.nav-link.active {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* Specific Styles */
+.card-title {
+    color: #333;
+}
+
+.table td, .table th {
+    border-top: 1px solid #ccc;
+}
+
+.text-primary {
+    color: #007bff;
+}
+
+@media (max-width: 768px) {
+    .nav-tabs {
+    display: flex;
+}
+
+.nav-item {
+    margin-right: 10px;
+}
+}
+
+    </style>
+
+<div class="card-body" data-v-6c27f7d6="">
+    <h3 class="card-title" data-v-6c27f7d6="">Jadual Waktu Kelas</h3>
+    <small data-v-6c27f7d6="">*Data ini dikemaskini setiap dua (2) jam selepas perubahan dibuat di <i data-v-6c27f7d6="">ecourse registration system</i></small>
+        <div class="pt-2 pb-2" data-v-6c27f7d6="">
+            <ul class="nav nav-tabs capsuled" >
+                <li class="nav-item">
+                    <a href="#Monday" > Monday</a>
+                </li>
+                <li class="nav-item" data-v-6c27f7d6="" role="presentation">
+                    <a href="#Tuesday" > Tuesday</a>
+                </li>
+                <li class="nav-item" data-v-6c27f7d6="" role="presentation">
+                    <a href="#Wednesday" > Wednesday</a>
+                </li>
+                <li class="nav-item" data-v-6c27f7d6="" role="presentation">
+                    <a class="nav-link" data-bs-toggle="tab" href="#Thursday" role="tab" aria-selected="false" data-v-6c27f7d6="" tabindex="-1">Thursday</a>
+                </li><li class="nav-item" data-v-6c27f7d6="" role="presentation">
+                    <a class="nav-link" data-bs-toggle="tab" href="#Friday" role="tab" aria-selected="false" data-v-6c27f7d6="" tabindex="-1">Friday</a>
+                </li>
+            </ul>
+            
+            <div class="tab-content mt-2" data-v-6c27f7d6="">
+                <div class="tab-pane fade" id="Monday" role="tabpanel" data-v-6c27f7d6="">
+                    <div class="table-responsive" data-v-6c27f7d6="">
+                        <table class="table" data-v-6c27f7d6="">
+                            <tbody data-v-6c27f7d6="">
+                                <tr class="white" data-v-6c27f7d6="">
+                                    <th scope="row" data-v-6c27f7d6="">
+                                        <span class="" data-v-6c27f7d6="">10:00 - 12:00</span>
+                                    </th>
+                                    <td data-v-6c27f7d6="">
+                                        <span class="text-primary" data-v-6c27f7d6="">STA404
+                                        </span> 
+                                        : 
+                                        <strong data-v-6c27f7d6="">STATISTIK PERNIAGAAN DAN SAINS SOSIAL</strong>
+                                        <br data-v-6c27f7d6=""><div data-v-6c27f7d6="">
+                                            <span class="text-primary" data-v-6c27f7d6="">Bilik:</span> Bilik TH05
+                                            <br data-v-6c27f7d6=""></div><!----><div data-v-6c27f7d6="">
+                                                <span class="text-primary" data-v-6c27f7d6="">Kumpulan:</span> 
+                                                CDCS2304A
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+            </div>
+        </div>
+</div>
+</head>

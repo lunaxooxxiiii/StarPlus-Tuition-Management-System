@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+      @import url('https://fonts.googleapis.com/css?family=Belleza');
+
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #290849;
+        color: white;
+    }
+    .header {
+      position: fixed;
+      text-align: center;
+      padding-top: 20px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      background-color: #E2D6EF;
+      font-family: 'Belleza';
+      color: #290849;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 20px;
+      padding: 50px;
+    }
+
+    .grid-child {
+      padding: 30px;
+      margin-top: 40%;
+    }
+
+    .grid-child img {
+      display: block;
+      border-radius: 5px;
+    }
+
+    .grid-child p {
+        color: #FFD61A;
+        font-family: 'Belleza';font-size: 30px; 
+        text-align: justify;   
+    }
+
+    .grid-child a {
+          color: whitesmoke;
+          text-decoration: none;
+          font-family: 'Belleza';font-size: 25px;
+          margin-left: 20px;
+      }
+
+      .grid-child a:hover {
+          text-decoration: underline;
+      }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h2>Welcome to</h2>
+  </header>
+
+  <div class="grid-container">
+
+    <div class="grid-child">
+        <img src="StarPlus.gif" alt="logo" width="300px" height="auto">
+        <a href="admin_login.html">Login Admin</a>
+        <a href="student_login.html">Login User</a>
+      </div>
+  
+    <div class="grid-child">
+      <p> STARPLUS </p><br/>
+      <p>SHINE BRIGHT LIKE A STAR </p>
+    </div>
+
+    <div class="grid-child">
+        <img src="System Overview.png" width="100%" height="auto">
+      </div>
+  
+  </div>
+</body>
+</html>
