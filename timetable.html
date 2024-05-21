@@ -175,5 +175,34 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.nav-link').click(function(e) {
+                e.preventDefault();
+                $('.nav-link').removeClass('active');
+                $(this).addClass('active');
+                var day = $(this).data('day');
+                loadDayData(day);
+            });
+
+            function loadDayData(day) {
+                $.ajax({
+                    url: 'getDayData.php',
+                    type: 'GET',
+                    data: { day: day },
+                    success: function(response) {
+                        $('#tabContent').html(response);
+                    },
+                    error: function() {
+                        $('#tabContent').html('<p>Error loading data.</p>');
+                    }
+                });
+            }
+
+            // Load Monday data by default
+            loadDayData('Monday');
+        });
+    </script>
 </body>
 </html>
