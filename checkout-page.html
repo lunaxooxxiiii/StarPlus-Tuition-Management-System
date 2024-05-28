@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing Details Form</title>
+    <style>/* styles.css */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .payment-methods {
+            margin-bottom: 20px;
+        }
+        
+        .payment-methods input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .payment-methods label {
+            font-weight: normal;
+        }
+        
+        button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #c0392b;
+        }
+        
+        .required {
+            color: red;
+        }
+        
+        @media (max-width: 768px) {
+            .billing-details, .order-details {
+                width: 100%;
+            }
+        }
+        </style>
+</head>
+<body>
+    
+        <div class="order-details">
+            <h2>Your order</h2>
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Subtotal</th>
+                </tr>
+                <tr>
+                    <td>LIVE ONLINE TUITION - BIOLOGI - FORM5-2024 × 1</td>
+                    <td>RM40.00 / month</td>
+                </tr>
+                <tr>
+                    <td>Subtotal</td>
+                    <td>RM40.00</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td>RM40.00</td>
+                </tr>
+                <tr>
+                    <td>Recurring totals</td>
+                    <td>RM40.00 / month</td>
+                </tr>
+            </table>
+            <p>First renewal: June 28, 2024</p>
+            
+            <div class="payment-methods">
+                <input type="radio" id="cdm-transfer" name="payment-method" value="cdm-transfer" checked>
+                <label for="cdm-transfer">CDM Transfer</label>
+                <p>Bayaran melalui mesin CDM dan hantarkan bukti bayaran beserta no order ke whatsapp kami untuk tujuan verifikasi.<br>Maybank – 562674209696 (IS Education Network SDN BHD)</p>
+                
+                <input type="radio" id="bank-transfer" name="payment-method" value="bank-transfer">
+                <label for="bank-transfer">Online Bank Transfer</label>
+            </div>
+            
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I have read and agree to the website terms and conditions <span class="required">*</span></label>
+            
+            <button type="submit">BAYAR SEKARANG</button>
+        </div>
+    </div>
+</body>
+</html>
