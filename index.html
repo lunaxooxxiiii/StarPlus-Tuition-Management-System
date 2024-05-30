@@ -1,361 +1,416 @@
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - www.codingnepalweb.com -->
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>StarPLUS Tuition</title>
     <style>
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans", sans-serif;
+        }
 
-body {
-  height: 100vh;
-  width: 100%;
-  background-color: #290849;
-  margin: 0;
-}
+        body {
+            height: 100vh;
+            width: 100%;
+            background-color: #290849;
+            margin: 0;
+            scroll-behavior: smooth; /* Enable smooth scrolling */
+        }
 
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
 
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #e2d6ef;
-  margin: 0 auto;
-  padding: 20px 15px;
-}
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #e2d6ef;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
 
-.navbar .links {
-  display: flex;
-  align-items: center;
-  list-style: none;
-  gap: 40px;
-}
+        .navbar .links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 40px;
+        }
 
-.navbar .links a {
-  font-weight: 800;
-  text-decoration: none;
-  color: #111;
-  padding: 10px 0;
-  transition: 0.2s ease;
-}
+        .navbar .links a {
+            font-weight: 800;
+            text-decoration: none;
+            color: #111;
+            padding: 10px 0;
+            transition: 0.2s ease;
+        }
 
-.navbar .links a:hover {
-  color: #ffd524;
-}
+        .navbar .links a:hover {
+            color: #ffd524;
+        }
 
-.navbar .buttons a {
-  text-decoration: none;
-  color: #111;
-  font-weight: 800;
-  font-size: 1rem;
-  padding: 10px 10px;
-  transition: 0.2s ease;
-  border: 2px solid #ffd524; /* Adjusted border thickness and color */
-  background-color: #ffd524; /* Background color */
-  border-radius: 0.375rem;
-  text-align: center;
-  display: inline-block; /* Ensures proper padding and border */
-  margin-right: 30px; /* Applies right margin to all buttons */
-}
+        .navbar .buttons a {
+            text-decoration: none;
+            color: #111;
+            font-weight: 800;
+            font-size: 1rem;
+            padding: 10px 10px;
+            transition: 0.2s ease;
+            border: 2px solid #ffd524;
+            background-color: #ffd524; 
+            border-radius: 0.375rem;
+            text-align: center;
+            display: inline-block;
+            margin-right: 30px;
+        }
 
-.navbar .buttons a:last-child {
-  margin-right: 0;
-}
+        .navbar .buttons a:last-child {
+            margin-right: 0;
+        }
 
-.navbar .buttons a:hover {
-  background-color: #e2d6ef; 
-  color: #111;
-  opacity: 0.7; 
-  transition: 0.2s ease;
-}
+        .navbar .buttons a:hover {
+            background-color: #e2d6ef; 
+            color: #111;
+            opacity: 0.7; 
+            transition: 0.2s ease;
+        }
 
-.hero-section .hero {
-  margin-top: 100px;
-  max-width: 100%;
-  color: #fff;
-}
+        .hero-section .hero {
+            margin-top: 100px;
+            max-width: 100%;
+            color: #fff;
+        }
 
-.hero h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-}
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
 
-.hero {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-}
+        .hero {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+        }
 
-.hero p {
-  font-size: 20px;
-  font-weight: 1000;
-  margin-bottom: 20px;
-  color: white;
-  white-space: pre-wrap; /* This will allow the browser to preserve whitespaces and line breaks */
-}
+        .hero p {
+            font-size: 20px;
+            font-weight: 1000;
+            margin-bottom: 20px;
+            color: white;
+            white-space: pre-wrap;
+        }
 
-.hero .title {
-  text-align: center;
-  font-family: "Cambria";
-  font-size: 40px;
-  color: black;
-  padding: 5px 20px;
-  background-color: #ffd524;
-}
+        .hero .title {
+            text-align: center;
+            font-family: "Cambria";
+            font-size: 40px;
+            color: black;
+            padding: 5px 20px;
+            background-color: #ffd524;
+        }
 
-.hero-section .buttons {
-  margin-top: 40px;
-}
+        .hero-section .buttons {
+            margin-top: 40px;
+        }
 
-.hero-section .buttons a {
-  text-decoration: none;
-  color: #fff;
-  padding: 12px 24px;
-  border-radius: 0.375rem;
-  font-weight: 600;
-  transition: 0.2s ease;
-  display: inline-block;
-}
+        .hero-section .buttons a {
+            text-decoration: none;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: 0.2s ease;
+            display: inline-block;
+        }
 
-.hero-section .buttons a:not(:last-child) {
-  margin-right: 15px;
-}
+        .hero-section .buttons a:not(:last-child) {
+            margin-right: 15px;
+        }
 
-.buttons .join {
-  background-color: #47b2e4;
-}
+        .buttons .join {
+            background-color: #47b2e4;
+        }
 
-.hero-section .buttons .learn {
-  border: 1px solid #fff;
-  border-radius: 0.375rem;
-}
+        .hero-section .buttons .learn {
+            border: 1px solid #fff;
+            border-radius: 0.375rem;
+        }
 
-.hero-section .buttons a:hover {
-  background-color: #47b2e4;
-}
+        .hero-section .buttons a:hover {
+            background-color: #47b2e4;
+        }
 
-  h2 {
-    color : yellow;
-    text-align: center;
-    background-color:#290849;
-    font-family:'Belleza';
-    font-size: 20px;
-    padding: 5px;
-  }
-  
-  .container {
-    padding: 64px;
-  }
+        h2 {
+            color: yellow;
+            text-align: center;
+            background-color: #290849;
+            font-family: 'Belleza';
+            font-size: 20px;
+            padding: 5px;
+        }
 
-  .container .download-btn {
-    text-decoration: none;
-    color: #561B59;
-    font-weight: 800;
-    font-size: 1rem;
-    padding: 10px;
-    margin: 10px 5px 15px 600px;
-    transition: 0.2s ease;
-    border: 4px solid black; /* Adjusted border thickness and color */
-    background-color: #ffd524; /* Background color */
-    border-radius: 0.375rem;
-    text-align: center;
-    display: inline-block; /* Ensures proper padding and border */
-    margin-right: 30px; /* Applies right margin to all buttons */
-  }
-  .row:after {
-    content: "";
-    display: table;
-    clear: both
-  }
+        .container {
+            padding: 64px;
+        }
 
-  .column-66 {
-    float: left;
-    width: 50%;
-    height :max-content;
-    padding: 10px;
-    /*background-color: grey;*/
-  }
+        .container .download-btn {
+            text-decoration: none;
+            color: #561B59;
+            font-weight: 800;
+            font-size: 1rem;
+            padding: 10px;
+            margin: 10px 5px 15px 700px;
+            transition: 0.2s ease;
+            border: 4px solid black;
+            background-color: #ffd524;
+            border-radius: 0.375rem;
+            text-align: center;
+            display: inline-block;
+            margin-right: 30px;
+        }
 
-  .column-33 {
-    float: right;
-    /*background-color: white;*/
-    width: 50%;
-    height :max-content;
-    padding: 10px;
-  }
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
 
-  .large-font {
-    font-size: 48px;
-  }
+        .column-66 {
+            float: left;
+            width: 50%;
+            height: max-content;
+            padding: 10px;
+        }
 
-  .xlarge-font {
-    font-size: 64px
-  }
+        .column-33 {
+            float: right;
+            width: 50%;
+            height: max-content;
+            padding: 10px;
+        }
 
-  img {
-    display: block;
-    height: auto;
-    max-width: 100%;
-  }
+        .large-font {
+            font-size: 48px;
+        }
 
-  .timetable-image {
-    transition: transform 0.2s ease;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto; 
-  }
+        .xlarge-font {
+            font-size: 64px;
+        }
 
-  .timetable-image:hover {
-    transform: scale(1.3);
-  }
+        .feedback-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
 
+        .feedback-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
 
-  @media screen and (max-width: 1023px) {
-    .navbar .logo a {
-    font-size: 1.5rem;
-  }
+        img {
+            display: block;
+            height: auto;
+            max-width: 100%;
+        }
 
-  .links {
-    position: fixed;
-    left: -100%;
-    top: 75px;
-    width: 100%;
-    height: 100vh;
-    padding-top: 50px;
-    background: #175d69;
-    flex-direction: column;
-    transition: 0.3s ease;
-  }
+        .timetable-image {
+            transition: transform 0.2s ease;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
 
-  .navbar #menu-toggle:checked ~ .links {
-    left: 0;
-  }
+        .timetable-image:hover {
+            transform: scale(1.3);
+        }
 
-  .navbar #hamburger-btn {
-    display: block;
-  }
+        @media screen and (max-width: 1000px) {
+            .navbar .logo a {
+                font-size: 1.5rem;
+            }
 
-  .hero-section .hero {
-    max-width: 100%;
-    text-align: center;
-  }
+            .links {
+                position: fixed;
+                left: -100%;
+                top: 75px;
+                width: 100%;
+                height: 100vh;
+                padding-top: 50px;
+                background: #175d69;
+                flex-direction: column;
+                transition: 0.3s ease;
+            }
 
-  .hero-section img {
-    display: none;
-  }
+            .navbar #menu-toggle:checked ~ .links {
+                left: 0;
+            }
 
-  .test-section {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 95vh;
-    padding: 0 5px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-    .column-66,
-    .column-33 {
-      width: 100%;
-      text-align: center;
-    }
-    .timetable-section {
-        flex-direction: column;
-        text-align: center;
-      }
-    img {
-      margin: auto;
-    }
-    .timetable-section .download-btn {
-        margin-left: 0;
-        margin-top: 10px;
-      }
-    }
+            .navbar #hamburger-btn {
+                display: block;
+            }
+
+            .hero-section .hero {
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .hero-section img {
+                display: none;
+            }
+
+            .test-section {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                height: 95vh;
+                padding: 0 5px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .column-66,
+            .column-33 {
+                width: 100%;
+                text-align: center;
+            }
+
+            .timetable-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            img {
+                margin: auto;
+            }
+
+            .timetable-section .download-btn {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <header class="header">
-       <h2>SHINE BRIGHT LIKE A STAR</h2>
-      <nav class="navbar">
-        <div class="gambar">
-          <img src="StarPlus2.png" alt="logo" style="width:70%;height:70px;margin: 0px 0px 0px 80px;">
-        </div>
-        <ul class="links">
-          <li><a href="#" id="home">Home</a></li>
-          <li><a href="#" id="timetable">Timetable</a></li>
-          <li><a href="#" id="package-fees">Package & Fees</a></li>
-          <li><a href="#" id="tutor">Tutor</a></li>
-          <li><a href="#" id="guide">Guide</a></li>
-        </ul>        
-        <div class="buttons">
-          <a href="#" class="contactus" id="contact-us-btn">Contact us</a>
-          <a href="login-choice.html" class="register" id="register-btn">Register</a>
-        </div>
-      </nav>
+        <h2>SHINE BRIGHT LIKE A STAR</h2>
+        <nav class="navbar">
+            <div class="gambar">
+                <img src="StarPlus2.png" alt="logo" style="width:70%;height:70px;margin: 0px 0px 0px 80px;">
+            </div>
+            <ul class="links">
+                <li><a href="#home" id="home-link">Home</a></li>
+                <li><a href="#feedback" id="feedback-link">Feedback</a></li>
+                <li><a href="#timetable" id="timetable-link">Timetable</a></li>
+                <li><a href="#package-fees" id="package-fees-link">Package & Fees</a></li>
+                <li><a href="#tutor" id="tutor-link">Tutor</a></li>
+                <li><a href="#guide" id="guide-link">Guide</a></li>
+            </ul>
+            <div class="buttons">
+                <a href="#contact" class="contactus" id="contact-link">Contact us</a>
+                <a href="login-choice.html" class="register" id="register-link">Register</a>
+            </div>
+        </nav>
     </header>
 
-    <div class="container" >
-      <div class="row">
-        <div class="column-66">
-    <section class="hero-section">
-      
-      <div class="hero">
-        <p>
-          <span class="title">MISSION :</span>
-          &nbsp;&nbsp;
-          1. Provides students with personalized and effective tutoring<br>
-          2. Promote sustainable and flexible learning through an interactive platform.<br>
-           &nbsp;&nbsp;3. Provide high-quality learning experiences to students around the world.
-          <br>
-          <span class="title">VISION :</span><br>
-          &nbsp;&nbsp;1. To become the leading online learning platform recognized for innovation and quality.<br>
-          2. To be a major catalyst in transforming the way people learn and teach by leveraging the latest technology and teaching methods.<br>
-          3. To provide educational access to all without economic barrier.
-        </p>
-      </div>
-    </div>
-  
-      <div class="column-33" >
-        <img src="StarPlus.gif" alt="logo" style="width:400px; height:400px; margin: 300px 0px 0px 90px;">
-      </div>
-    </div>
-  </div>
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="container">
+            <div class="row">
+                <div class="column-66">
+                    <div class="hero-section">
+                        <div class="hero">
+                            <p>
+                                <span class="title">MISSION :</span>
+                                &nbsp;&nbsp;
+                                1. Provides students with personalized and effective tutoring<br>
+                                2. Promote sustainable and flexible learning through an interactive platform.<br>
+                                &nbsp;&nbsp;3. Provide high-quality learning experiences to students around the world.
+                                <br>
+                                <span class="title">VISION :</span><br>
+                                &nbsp;&nbsp;1. To become the leading online learning platform recognized for innovation and quality.<br>
+                                2. To be a major catalyst in transforming the way people learn and teach by leveraging the latest technology and teaching methods.<br>
+                                3. To provide educational access to all without economic barrier.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column-33">
+                    <img src="StarPlus.gif" alt="logo" style="width:400px; height:400px; margin: 300px 0px 0px 90px;">
+                </div>
+            </div>
+        </div>
     </section>
+
+    <!-- Feedback Section -->
+    <section id="feedback">
+        <div class="container" style="background-color:#E2D6EF; padding-top: 100px;">
+            <h1 class="xlarge-font"><b>FEEDBACK</b></h1>
+            <h1 class="large-font" style="color:#ffd524;"><b>What People Says</b></h1>
+            <br><br>
+            <div class="feedback-grid">
+                <img src="FEEDBACK/8.png" alt="logo">
+                <img src="FEEDBACK/9.png" alt="logo">
+                <img src="FEEDBACK/10.png" alt="logo">
+                <img src="FEEDBACK/11.png" alt="logo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Timetable Section -->
+    <section id="timetable">
+        <div class="container" style="background-color:#E2D6EF; padding-top: 100px;">
+            <h1 class="xlarge-font"><b>TIMETABLE</b></h1>
+            <div class="timetable-section">
+                <img src="Form 1, 2 & 3.png" alt="Timetable" class="timetable-image" id="timetable1" style="width:50%; height:auto;">
+                <a href="Form 1, 2 & 3.png" download="Form 1, 2 & 3.jpg" class="download-btn">DOWNLOAD</a>
+            </div>
+            <div class="timetable-section">
+                <img src="Form 4 & 5.png" alt="Timetable" class="timetable-image" id="timetable2" style="width:50%; height:auto;">
+                <a href="Form 4 & 5.png" download="Form 4 & 5.jpg" class="download-btn">DOWNLOAD</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Package & Fees Section -->
+    <section id="package-fees">
+        <div class="container" style="background-color:#E2D6EF; padding-top: 100px;">
+            <h1 class="xlarge-font"><b>PACKAGE & FEES</b></h1>
+        </div>
+    </section>
+
+    <!-- Tutor Section -->
+    <section id="tutor">
+        <div class="container" style="background-color:#E2D6EF; padding-top: 100px;">
+            <h1 class="xlarge-font"><b>TUTOR</b></h1>
+        </div>
+    </section>
+
+    <!-- Guide Section -->
+    <section id="guide">
+        <div class="container" style="background-color:#E2D6EF; padding-top: 100px;">
+            <h1 class="xlarge-font"><b>GUIDE</b></h1>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container" style="background-color:#E2D6EF; padding-top: 100px;">
+            <h1 class="xlarge-font"><b>CONTACT US</b></h1>
+        </div>
+    </section>
+
     <script src="script.js"></script>
-
-<div class="container" style="background-color:transparent;
-background-image: linear-gradient(160deg, #85FFC9 0%, #FF74E3 100%);">
-      <h1 class="xlarge-font"><b>TESTIMONI/FEEDBACK</b></h1>
-      <h1 class="large-font" style="color:red;"><b>What People Says</b></h1><br><br>
-    <img src="FEEDBACK/feedback1.jpg" alt="logo" style="width:400px; height:400px;"><br>
-    <img src="FEEDBACK/feedback2.jpeg" alt="logo" style="width:400px; height:400px;"><br>
-</div>
-
-<div class="container" style="background-color:white">
-  <h1 class="xlarge-font"><b>Timetable</b></h1>
-  <div class="timetable-section">
-    <img src="Form 1, 2 & 3.png" alt="Timetable" class="timetable-image" id="timetable1" style="width:50%; height:auto;">
-    <a href="Form 1, 2 & 3.png" download="Form 1, 2 & 3.jpg" class="download-btn">DOWNLOAD</a>
-  </div>
-  <div class="timetable-section">
-    <img src="Form 4 & 5.png" alt="Timetable" class="timetable-image" id="timetable2" style="width:50%; height:auto;">
-    <a href="Form 4 & 5.png" download="Form 4 & 5.jpg" class="download-btn">DOWNLOAD</a>
-  </div>
-</div>
-
-  </body>
+</body>
 </html>
