@@ -4,96 +4,107 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Student Registration</title>
+=======
+    <link rel="stylesheet" href="style.css">
+    <title>Register</title>
+>>>>>>> 33b4ef890f4c3ef73d189c099dc6f4b2534839c3
 </head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins',sans-serif;
-}
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #23255D;
-}
-.register-box{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 440px;
-    height: 480px;
-    padding: 30px;
-}
-.input-box .input-field{
-    width: 100%;
-    height: 60px;
-    font-size: 17px;
-    padding: 0 25px;
-    margin-bottom: 15px;
-    border-radius: 30px;
-    border: none;
-    box-shadow: 0px 5px 10px 1px rgba(0,0,0, 0.05);
-    outline: none;
-}
-::placeholder{
-    font-weight: 500;
-    color: #222;
-}
-.input-submit{
-    position: relative;
-}
-.submit-btn{
-    width: 100%;
-    height: 60px;
-    background: #C40248;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: .3s;
-}
-.input-submit label{
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    color: #fff;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-}
-.submit-btn:hover{
-    background: red;
-    transform: scale(1.05,1);
-}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
 
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #23255D;
+    }
+
+    .register-box {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 440px;
+        height: 480px;
+        padding: 30px;
+    }
+
+    .input-box .input-field {
+        width: 100%;
+        height: 60px;
+        font-size: 17px;
+        padding: 0 25px;
+        margin-bottom: 15px;
+        border-radius: 30px;
+        border: none;
+        box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.05);
+        outline: none;
+    }
+
+    ::placeholder {
+        font-weight: 500;
+        color: #222;
+    }
+
+    .input-submit {
+        position: relative;
+    }
+
+    .submit-btn {
+        width: 100%;
+        height: 60px;
+        background: #C40248;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: .3s;
+    }
+
+    .input-submit label {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        color: #fff;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+    }
+
+    .submit-btn:hover {
+        background: red;
+        transform: scale(1.05, 1);
+    }
 </style>
 <body>
     <div class="register-box">
         <div class="register">
-            <img src="logoStud.jpg" alt="StarPlus Logo" width="100%" height=auto>
+            <img src="logoStud.jpg" alt="StarPlus Logo" width="100%" height="auto">
         </div>
-        <div class="input-box">
-            <input type="text" class="input-field" placeholder="First Name" name="firstName" autocomplete="off" required>
-        </div>
-        <div class="input-box">
-            <input type="text" class="input-field" placeholder="Last Name" name="lastName" autocomplete="off" required>
-        </div>
-        <div class="input-box">
-            <input type="text" class="input-field" placeholder="Email" name="email" autocomplete="off" required>
-        </div>
-        <div class="input-box">
-            <input type="password" class="input-field" placeholder="Password" name="password" autocomplete="off" required>
-        </div>
-        <div class="input-submit">
-            <button class="submit-btn" id="submit"></button>
-            <label for="submit">Register</label>
-        </div>
+        <form action="register.php" method="post">
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="First Name" name="firstName" autocomplete="off" required>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Last Name" name="lastName" autocomplete="off" required>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Email" name="email" autocomplete="off" required>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Password" name="password" autocomplete="off" required>
+            </div>
+            <div class="input-submit">
+                <button type="submit" class="submit-btn" id="submit">Register</button>
+            </div>
+        </form>
     </div>
 </body>
 </html>

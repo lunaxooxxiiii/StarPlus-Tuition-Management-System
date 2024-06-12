@@ -112,32 +112,33 @@ section a{
 <body>
     <div class="login-box">
         <div class="login-header">
-            <img src="logoStud.jpg""StarPlus Logo" width="100%" height=auto>
+            <img src="logoStud.jpg" alt="StarPlus Logo" width="100%" height="auto">
         </div>
-        <div class="input-box">
-            <input type="text" class="input-field" placeholder="Email" name="email" autocomplete="off" required>
-        </div>
-        <div class="input-box">
-            <input type="password" class="input-field" placeholder="Password" name="password" autocomplete="off" required>
-        </div>
-        <div class="forgot">
-            <section>
-                <input type="checkbox" id="check">
-                <label for="check">Remember me</label>
-            </section>
-            <section>
-                <a href="#">Forgot password</a>
-            </section>
-        </div>
-        <div class="input-submit">
-            <button class="submit-btn" id="submit"></button>
-            <label for="submit">Log In</label>
-        </div>
-        <div class="input-submit">
-            <button class="register-btn" id="register"></button>
-            <label for="submit">Register</label>
-            
-        </div>
+        <form action="student-login.php" method="post">
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Email" name="email" autocomplete="off" required>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Password" name="password" autocomplete="off" required>
+            </div>
+            <div class="forgot">
+                <section>
+                    <input type="checkbox" id="check">
+                    <label for="check">Remember me</label>
+                </section>
+                <section>
+                    <a href="#">Forgot password</a>
+                </section>
+            </div>
+            <div class="input-submit">
+                <button type="submit" class="submit-btn" id="submit"></button>
+                <label for="submit">Log In</label>
+            </div>
+            <div class="input-submit">
+                <button class="register-btn" id="register" onclick="location.href='registration-student.html';"></button>
+                <label for="register">Register</label>    
+            </div>
+        </form>
     </div>
 </body>
 </html>
