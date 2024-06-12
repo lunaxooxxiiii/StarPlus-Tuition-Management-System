@@ -236,6 +236,79 @@
             transform: scale(1.3);
         }
 
+        .tutor-section {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #3c005b;
+            color: #fff;
+            border-radius: 8px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .back-button img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .tutor-title {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .breadcrumb {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb a {
+            color: #fdd835;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .tutor-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .tutor-card {
+            background-color: #fff;
+            color: #000;
+            width: 200px;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .tutor-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .tutor-card h2 {
+            margin: 10px 0 5px;
+            font-size: 1.2em;
+        }
+
+        .tutor-card p {
+            margin: 0;
+            color: #333;
+            font-weight: bold;
+        }
         @media screen and (max-width: 1000px) {
             .navbar .logo a {
                 font-size: 1.5rem;
@@ -401,8 +474,35 @@
 
     <!-- Tutor Section -->
     <section id="tutor">
-        <div class="container" style="background-color:#E2D6EF; padding-top: 100px;">
-            <h1 class="xlarge-font"><b>TUTOR</b></h1>
+            <div class="back-button">
+                <a href="#"><img src="back-icon.png" alt="Back" /></a>
+            </div>
+            <h1 class="tutor-title">TUTOR</h1>
+            <div class="breadcrumb">
+                <a href="#">All</a> / <a href="#">FORM 1</a> / <a href="#">FORM 2</a> / <a href="#">FORM 3</a> / <a href="#">FORM 4</a> 
+            </div>
+            <div class="tutor-list">
+                <div class="tutor-card">
+                    <img src="TUTOR\F1\B.Melayu\AHMAD AZLAN.jpg">
+                    <h2>TUTOR AHMAD AZLAN</h2>
+                    <p>BAHASA MELAYU</p>
+                </div>
+                <div class="tutor-card">
+                    <img src="Tutor.png" alt="Tutor Hanim">
+                    <h2>TUTOR HANIM</h2>
+                    <p>English</p>
+                </div>
+                <div class="tutor-card">
+                    <img src="Tutor.png" alt="Tutor Hanim">
+                    <h2>TUTOR HANIM</h2>
+                    <p>Account</p>
+                </div>
+                <div class="tutor-card">
+                    <img src="Tutor.png" alt="Tutor Hanim">
+                    <h2>TUTOR HANIM</h2>
+                    <p>English</p>
+                </div>
+            </div>
         </div>
     </section>
 
