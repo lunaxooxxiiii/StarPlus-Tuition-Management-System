@@ -276,9 +276,10 @@
         }
 
         .tutor-list {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* Create 5 equal columns */
+            gap: 20px; /* Space between the cards */
+            justify-items: center; /* Center the items horizontally */
         }
 
         .tutor-card {
@@ -293,8 +294,9 @@
         }
 
         .tutor-card img {
-            width: 200px;
-            height: auto;
+            width: 150px; /* Fixed width */
+            height: 150px; /* Fixed height */
+            object-fit: cover; /* Ensures the image covers the area */
             border-radius: 50%;
             margin-bottom: 15px;
         }
@@ -309,6 +311,8 @@
             color: #333;
             font-weight: bold;
         }
+
+
         @media screen and (max-width: 1000px) {
             .navbar .logo a {
                 font-size: 1.5rem;
@@ -499,9 +503,34 @@
                     <p>ACCOUNT</p>
                 </div>
                 <div class="tutor-card">
-                    <img src="Tutor.png" alt="Tutor Hanim">
-                    <h2>TUTOR HANIM</h2>
-                    <p>English</p>
+                    <img src="TUTOR\F4\ADDMATH\MUHD HAIKAL SHAH.jpg" >
+                    <h2>TUTOR MUHD HAIKAL SHAH</h2>
+                    <p>ADD MATH</p>
+                </div>
+                <div class="tutor-card">
+                    <img src="TUTOR\F4\ADDMATH\OLIVIA YOUNG.jpg" >
+                    <h2>TUTOR OLIVIA YOUNG</h2>
+                    <p>ADD MATH</p>
+                </div>
+                <div class="tutor-card">
+                    <img src="TUTOR\F4\ADDMATH\RICKY RAMIREZ.jpg" >
+                    <h2>TUTOR RICKY RAMIREZ</h2>
+                    <p>ADD MATH</p>
+                </div>
+                <div class="tutor-card">
+                    <img src="TUTOR\F4\B.MELAYU\EMMA DENCH.jpg" >
+                    <h2>TUTOR EMMA DENCH</h2>
+                    <p>BAHASA MELAYU</p>
+                </div>
+                <div class="tutor-card">
+                    <img src="TUTOR\F4\B.MELAYU\HAZIQ YUSOF.jpg" >
+                    <h2>TUTOR HAZIQ YUSOF</h2>
+                    <p>BAHASA MELAYU</p>
+                </div>
+                <div class="tutor-card">
+                    <img src="TUTOR\F4\B.MELAYU\SYAHIRA SOFEA.jpg" >
+                    <h2>TUTOR SYAHIRA SOFEA</h2>
+                    <p>BAHASA MELAYU</p>
                 </div>
             </div>
         </div>
