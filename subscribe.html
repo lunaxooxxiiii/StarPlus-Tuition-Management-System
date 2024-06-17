@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subscribe</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+        text-decoration: none;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      body {
+        background-color: white;
+        display: flex;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .sidebar {
+        width: 250px;
+        background: #23255d;
+        padding: 30px 0;
+        position: fixed;
+        height: 100%;
+      }
+
+      .sidebar h2 {
+        color: #fff;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .sidebar ul li {
+        padding: 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .sidebar ul li a {
+        color: white;
+        display: block;
+        font-size: 20px;
+      }
+
+      .sidebar ul li:hover {
+        background-color: #594f8d;
+      }
+
+      .main_content {
+        width: calc(100% - 250px);
+        margin-left: 250px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .card {
+        background: #fff;
+        text-align: center;
+        flex: 1;
+      }
+
+      .card-body {
+        padding: 20px;
+        color: #333;
+        font-size: 1em;
+      }
+
+      .card-body img {
+        width: auto;
+        height: 250px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2><i class="bx bxs-user"></i> My profile</h2>
+      <ul>
+        <li>
+          <a href="student-profile.html"><i class="bx bxs-id-card"></i> Profile</a>
+        </li>
+        <li>
+          <a href="class.html"><i class="bx bx-book-open"></i> Class</a>
+        </li>
+        <li>
+          <a href="subscribe.html"><i class="bx bx-receipt"></i> Subscribe</a>
+        </li>
+        <li>
+          <a href="timetable.html"><i class="bx bx-calendar"></i> Timetable</a>
+        </li>
+        <li>
+          <a href="bill.html"><i class="bx bx-money"></i> Bill</a>
+        </li>
+        <li>
+          <a href="announcement.html"
+            ><i class="bx bx-bell"></i> Announcement</a
+          >
+        </li>
+        <li>
+          <a href="student-login.html"><i class="bx bx-log-out"></i> Logout</a>
+        </li>
+      </ul>
+    </div>
+    <div class="main_content">
+      <h3 class="card-title"><i class="bx bx-receipt"></i> Subscribe</h3>
+      <div class="row">
+        <div class="card">
+          <div class="card-body">
+            <a href="subscribe-form1.html"
+              ><img src="SUBJECT/form1.jpg" alt="Form 1"
+            /></a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <a href="subscribe-form2.html"
+              ><img src="SUBJECT/form2.jpg" alt="Form 2"
+            /></a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <a href="subscribe-form3.html"
+              ><img src="SUBJECT/form3.jpg" alt="Form 3"
+            /></a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card">
+          <div class="card-body">
+            <a href="subscribe-form4.html"
+              ><img src="SUBJECT/form4.jpg" alt="Form 4"
+            /></a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <a href="subscribe-form5.html"
+              ><img src="SUBJECT/form5.jpg" alt="Form 5"
+            /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

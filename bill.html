@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bill</title>
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
     <style>
         * {
             margin: 0;
@@ -25,9 +26,9 @@
         }
 
         .sidebar {
-            width: 210px;
+            width: 250px;
             height: 100vh;
-            background: #23255D;
+            background: #23255d;
             padding: 30px 0;
             position: fixed;
         }
@@ -47,7 +48,7 @@
         .sidebar ul li a {
             color: white;
             display: block;
-            font-size: 18px;
+            font-size: 20px;
         }
 
         .sidebar ul li:hover {
@@ -55,8 +56,8 @@
         }
 
         .main_content {
-            width: calc(100% - 210px);
-            margin-left: 210px;
+            width: calc(100% - 250px);
+            margin-left: 250px;
             padding: 20px;
         }
 
@@ -88,7 +89,8 @@
             border-collapse: collapse;
         }
 
-        .subscription-table th, .subscription-table td {
+        .subscription-table th,
+        .subscription-table td {
             padding: 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
@@ -125,29 +127,29 @@
         @media (max-width: 768px) {
             .sidebar ul li a {
                 font-size: 16px;
+            }
         }
-    }
     </style>
 </head>
+
 <body>
     <div class="wrapper">
         <div class="sidebar">
-            <h2>My profile</h2>
+            <h2><i class="bx bxs-user"></i> My profile</h2>
             <ul>
-                <li><a href="#"><i class='bx bxs-id-card'></i> Profile</a></li>
-                <li><a href="#"><i class='bx bx-book-open'></i> Class</a></li>
-                <li><a href="#"><i class='bx bx-receipt'></i> Subscribe</a></li>
-                <li><a href="#"><i class='bx bx-calendar'></i> Timetable</a></li>
-                <li><a href="#"><i class='bx bx-money'></i> Bill</a></li>
-                <li><a href="#"><i class='bx bx-bell'></i> Announcement</a></li>
+                <li><a href="student-profile.html"><i class='bx bxs-id-card'></i> Profile</a></li>
+                <li><a href="class.html"><i class='bx bx-book-open'></i> Class</a></li>
+                <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
+                <li><a href="timetable.html"><i class='bx bx-calendar'></i> Timetable</a></li>
+                <li><a href="bill.html"><i class='bx bx-money'></i> Bill</a></li>
+                <li><a href="announcement.html"><i class='bx bx-bell'></i> Announcement</a></li>
+                <li><a href="student-login.html"><i class='bx bx-log-out'></i> Logout</a></li>
             </ul>
         </div>
         <div class="main_content">
             <div class="card-body">
                 <div class="subscription-container">
-                    <div class="subscription-header">
-                        SUBSCRIPTION TOTALS
-                    </div>
+                    <div class="subscription-header">SUBSCRIPTION TOTALS</div>
                     <table class="subscription-table">
                         <thead>
                             <tr>
@@ -158,17 +160,17 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><i class='bx bx-x'></i></td>
+                                <td><i class="bx bx-x"></i></td>
                                 <td>LIVE ONLINE TUITION - GEOGRAFI - FORM3 ×1</td>
                                 <td>RM40.00 / month</td>
                             </tr>
                             <tr>
-                                <td><i class='bx bx-x'></i></td>
+                                <td><i class="bx bx-x"></i></td>
                                 <td>LIVE ONLINE TUITION - SEJARAH - FORM3 ×1</td>
                                 <td>RM40.00 / month</td>
                             </tr>
                             <tr>
-                                <td><i class='bx bx-x'></i></td>
+                                <td><i class="bx bx-x"></i></td>
                                 <td>LIVE ONLINE TUITION - SAINS - FORM3 ×1</td>
                                 <td>RM40.00 / month</td>
                             </tr>
@@ -183,3 +185,5 @@
         </div>
     </div>
 </body>
+
+</html>

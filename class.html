@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +24,7 @@
         }
 
         .sidebar {
-            width: 210px;
+            width: 250px;
             background: #23255D;
             padding: 30px 0;
             position: fixed;
@@ -53,8 +54,8 @@
         }
 
         .main_content {
-            width: calc(100% - 210px);
-            margin-left: 210px;
+            width: calc(100% - 250px);
+            margin-left: 250px;
             padding: 20px;
         }
 
@@ -139,7 +140,7 @@
             margin-bottom: 20px;
             color: black;
             border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .card-class h3 {
@@ -164,15 +165,18 @@
         }
     </style>
 </head>
+
 <body>
     <div class="sidebar">
-        <h2>My Profile</h2>
-        <ul><li><a href="student-profile.html"><i class='bx bxs-id-card'></i> Profile</a></li>
+        <h2><i class='bx bxs-user'></i> My profile</h2>
+        <ul>
+            <li><a href="student-profile.html"><i class='bx bxs-id-card'></i> Profile</a></li>
             <li><a href="class.html"><i class='bx bx-book-open'></i> Class</a></li>
-            <li><a href="#"><i class='bx bx-receipt'></i> Subscribe</a></li>
+            <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
             <li><a href="timetable.html"><i class='bx bx-calendar'></i> Timetable</a></li>
-            <li><a href="#"><i class='bx bx-money'></i> Bill</a></li>
+            <li><a href="bill.html"><i class='bx bx-money'></i> Bill</a></li>
             <li><a href="announcement.html"><i class='bx bx-bell'></i> Announcement</a></li>
+            <li><a href="student-login.html"><i class='bx bx-log-out'></i> Logout</a></li>
         </ul>
     </div>
     <div class="main_content">
@@ -201,4 +205,5 @@
         </div>
     </div>
 </body>
+
 </html>
