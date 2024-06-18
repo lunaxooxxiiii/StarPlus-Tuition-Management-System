@@ -28,12 +28,9 @@ $lastName = $conn->real_escape_string($lastName);
 $email = $conn->real_escape_string($email);
 $password = $conn->real_escape_string($password);
 
-// Hash the password
-$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
 // Insert user data into the database
 $sql = "INSERT INTO student (StudentEmail, StudentPassword, FirstName, LastName) 
-        VALUES ('$email', '$hashed_password', '$firstName', '$lastName')";
+        VALUES ('$email', '$password', '$firstName', '$lastName')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
