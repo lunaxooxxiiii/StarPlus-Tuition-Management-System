@@ -24,6 +24,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
     // Protect against SQL injection
     $email = $conn->real_escape_string($email);
+    $plain_password = $conn->real_escape_string($plain_password);
 
     // Query to check if the email exists
     $sql = "SELECT * FROM starplus.student WHERE StudentEmail='$email'";
@@ -38,6 +39,12 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             // Set session variables
             $_SESSION['stud_email'] = $row['StudentEmail'];
             
+
+        // Verify password
+        if ($plain_password == $row['StudentPassword']) {
+            // Set session variables
+            $_SESSION['stud_email'] = $row['StudentEmail'];
+
             // Redirect to student profile page
             header("Location: student-profile.html");
             exit();
