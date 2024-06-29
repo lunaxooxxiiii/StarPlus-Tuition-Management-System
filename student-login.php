@@ -16,36 +16,42 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get form data
-$email = $_POST['email'];
-$password = $_POST['password'];
+// Check if form data is set
+if (isset($_POST['email']) && isset($_POST['password'])) {
+    // Get form data
+    $email = $_POST['email'];
+    $plain_password = $_POST['password'];
 
-// Protect against SQL injection
-$email = $conn->real_escape_string($email);
+    // Protect against SQL injection
+    $email = $conn->real_escape_string($email);
 
-// Query to check if the email exists
-$sql = "SELECT * FROM starplus.student WHERE StudentEmail='$email'";
-$result = $conn->query($sql);
+    // Query to check if the email exists
+    $sql = "SELECT * FROM starplus.student WHERE StudentEmail='$email'";
+    $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    // Fetch the user data
-    $row = $result->fetch_assoc();
-    
-    // Verify password
-    if (password_verify($password, $row['StudentPassword'])) {
-        // Set session variables
-        $_SESSION['admin_email'] = $row['StudentEmail'];
+    if ($result->num_rows > 0) {
+        // Fetch the user data
+        $row = $result->fetch_assoc();
         
-        // Redirect to admin dashboard
-        header("Location: timetable.html");
-        exit();
+        // Verify password
+        if (password_verify($plain_password, $row['StudentPassword'])) {
+            // Set session variables
+            $_SESSION['stud_email'] = $row['StudentEmail'];
+            
+            // Redirect to student profile page
+            header("Location: student-profile.html");
+            exit();
+        } else {
+            // Incorrect password
+            echo "Invalid email or password.";
+        }
     } else {
-        // Incorrect password
+        // Email does not exist
         echo "Invalid email or password.";
     }
 } else {
-    // Email does not exist
-    echo "Invalid email or password.";
+    // Form data not set
+    echo "Please enter email and password.";
 }
 
 // Close connection
