@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 // Database connection details
 $servername = "localhost";
@@ -28,13 +29,21 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+>>>>>>> 67d5300d4886f00bb5c699face0a98ee121e32ba
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student List</title>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <style>
+<<<<<<< HEAD
         /* Your CSS code */
+=======
+>>>>>>> 67d5300d4886f00bb5c699face0a98ee121e32ba
         * {
             margin: 0;
             padding: 0;
@@ -178,6 +187,10 @@ $conn->close();
         }
     </style>
 </head>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 67d5300d4886f00bb5c699face0a98ee121e32ba
 <body>
     <div class="sidebar">
         <h2><i class='bx bxs-user'></i> My Page</h2>
@@ -203,6 +216,7 @@ $conn->close();
         </div>
         <div class="student-list">
             <h3>FORM 5</h3>
+<<<<<<< HEAD
             <?php if (empty($students)): ?>
                 <p>No students found.</p>
             <?php else: ?>
@@ -219,4 +233,45 @@ $conn->close();
         </div>
     </div>
 </body>
+=======
+            <?php
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "starplus";
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            // Fetch students
+            $sql = "SELECT FirstName, LastName FROM students WHERE SubjectCode = 'FORM5'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                // Output data of each row
+                while($row = $result->fetch_assoc()) {
+                    echo '<div class="student-item">';
+                    echo '<h4>' . $row["FirstName"] . ' ' . $row["LastName"] . '</h4>';
+                    echo '<div class="actions">';
+                    echo '<button class="view-button">VIEW</button>';
+                    echo '<button class="delete-button">DELETE</button>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                echo "0 results";
+            }
+
+            $conn->close();
+            ?>
+        </div>
+    </div>
+</body>
+
+>>>>>>> 67d5300d4886f00bb5c699face0a98ee121e32ba
 </html>
