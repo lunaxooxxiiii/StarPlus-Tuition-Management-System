@@ -16,17 +16,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Query to fetch subjects
-$sql = "SELECT SubjectCode, subjectImage FROM subject 
-        WHERE SubjectCode IN ('ACC_F4', 'ACC_F5', 'MALAY_F4', 'MALAY_F5', 'MATH_F4', 'MATH_F5')";
-$result = $conn->query($sql);
+// Fetch subjects for Form 4
+$sql_form_5 = "SELECT SubjectCode, SubjectName, subjectImage, SubjectPrice FROM subject WHERE Form = 'F5'";
+$result_form_5 = $conn->query($sql_form_5);
 
 // Array to store fetched subjects
-$subjects = array();
+$subjects_form_5 = array();
 
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        $subjects[] = $row;
+if ($result_form_5->num_rows > 0) {
+    while ($row = $result_form_5->fetch_assoc()) {
+        $subjects_form_5[] = $row;
     }
 }
 
@@ -39,20 +38,25 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subscribe</title>
+    <title>Form 4 Subjects</title>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <style>
         .row {
             display: flex;
+            flex-wrap: wrap; /* Ensure items wrap to new line */
             justify-content: space-between;
             gap: 15px;
+            margin-top: 20px; /* Add margin for spacing */
         }
 
         .card {
             background: #fff;
             text-align: center;
             flex: 1;
+            max-width: calc(25% - 15px); /* Set maximum width for each card (4 cards per row) */
+            box-sizing: border-box; /* Include padding and border in width calculation */
+            margin-bottom: 15px; /* Add margin at bottom for spacing */
         }
 
         .card-body {
@@ -61,10 +65,29 @@ $conn->close();
         }
 
         .card-body img {
-            width: 300px;
+            width: 100%;
             height: auto;
             object-fit: cover;
             cursor: pointer;
+        }
+
+        /* Media query for responsive adjustments */
+        @media (max-width: 1200px) {
+            .card {
+                max-width: calc(33.33% - 15px); /* 3 cards per row on medium screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                max-width: calc(50% - 15px); /* 2 cards per row on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                max-width: 100%; /* 1 card per row on extra small screens */
+            }
         }
     </style>
 </head>
@@ -84,16 +107,24 @@ $conn->close();
     <div class="main_content">
         <a href="subscribe.html"><i class='bx bx-arrow-back'> BACK </i></a>
         
-        <!-- Dynamically generate cards based on fetched subjects -->
+        <!-- Display subjects for Form 4 -->
+        <h3>Form 4 Subjects</h3>
         <div class="row">
-            <?php foreach ($subjects as $subject) : ?>
+            <?php 
+            $count = 0;
+            foreach ($subjects_form_5 as $subject) : 
+                $count++;
+            ?>
                 <div class="card">
                     <div class="card-body">
-                        <a href="subscribe-class.php?subjectCode=<?php echo $subject['SubjectCode']; ?>">
-                            <img src="<?php echo $subject['subjectImage']; ?>" alt="Subject Image">
-                        </a>
+                    <a href="cart-page.php?subjectCode=<?php echo $subject['SubjectCode']; ?>&form=5">
+                        <img src="<?php echo $subject['subjectImage']; ?>" alt="<?php echo $subject['SubjectName']; ?>">
+                    </a>
                     </div>
                 </div>
+                <?php if ($count % 4 == 0 && $count < count($subjects_form_5)) : ?>
+                    </div><div class="row">
+                <?php endif; ?>
             <?php endforeach; ?>
         </div>
         

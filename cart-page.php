@@ -1,3 +1,92 @@
+<?php
+// Start a session
+session_start();
+
+// Initialize total variables
+$total = 0;
+
+// Get form type
+$form = isset($_GET['form']) ? $_GET['form'] : '';
+
+// Check if subjectCode is passed for adding
+if (isset($_GET['subjectCode'])) {
+    $subjectCode = $_GET['subjectCode'];
+
+    // Database connection
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "starplus";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Prepare SQL query to fetch subject details
+    $sql = "SELECT * FROM starplus.subject WHERE SubjectCode = ?";
+
+    // Prepare and bind parameter
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $subjectCode);
+
+    // Execute query
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Check if subject found
+    if ($result->num_rows > 0) {
+        // Fetch subject details
+        $row = $result->fetch_assoc();
+        $productName = $row['SubjectName'];
+        $productImage = $row['subjectImage'];
+        $productPrice = $row['SubjectPrice'];
+
+        // Store in session
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = array();
+        }
+
+        if (!isset($_SESSION['cart'][$subjectCode])) {
+            $_SESSION['cart'][$subjectCode] = array(
+                'name' => $productName,
+                'image' => $productImage,
+                'price' => $productPrice,
+                'quantity' => 1,
+                'subtotal' => $productPrice
+            );
+        } else {
+            $_SESSION['cart'][$subjectCode]['quantity'] += 1;
+            $_SESSION['cart'][$subjectCode]['subtotal'] += $productPrice;
+        }
+    }
+
+    // Close statement and connection
+    $stmt->close();
+    $conn->close();
+}
+
+// Check if action is passed for updating quantity
+if (isset($_GET['action']) && isset($_GET['subjectCode'])) {
+    $action = $_GET['action'];
+    $subjectCode = $_GET['subjectCode'];
+
+    if ($action == 'increase') {
+        $_SESSION['cart'][$subjectCode]['quantity'] += 1;
+        $_SESSION['cart'][$subjectCode]['subtotal'] += $_SESSION['cart'][$subjectCode]['price'];
+    } elseif ($action == 'decrease') {
+        if ($_SESSION['cart'][$subjectCode]['quantity'] > 1) {
+            $_SESSION['cart'][$subjectCode]['quantity'] -= 1;
+            $_SESSION['cart'][$subjectCode]['subtotal'] -= $_SESSION['cart'][$subjectCode]['price'];
+        }
+    } elseif ($action == 'remove') {
+        unset($_SESSION['cart'][$subjectCode]);
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,6 +226,21 @@
         .proceed-checkout:hover {
             background-color: #23255D;
         }
+
+        .quantity-controls {
+            display: flex;
+            gap: 5px;
+        }
+
+        .quantity-controls a {
+            background-color: #23255D;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -152,74 +256,35 @@
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Subtotal</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    // Initialize total variables
-                    $total = 0;
-                    $recurringTotal = 0;
-
-                    // Check if subjectCodes are passed through URL as an array
-                    if (isset($_GET['SubjectCode']) && is_array($_GET['SubjectCode'])) {
-                        $subjectCodes = $_GET['SubjectCode'];
-
-                        // Database connection details
-                        $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "starplus";
-
-                        // Create connection
-                        $conn = new mysqli($servername, $username, $password, $dbname);
-
-                        // Check connection
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
-
-                        // Prepare SQL query to fetch subject details based on subjectCode
-                        $placeholders = implode(',', array_fill(0, count($subjectCodes), '?'));
-                        $sql = "SELECT * FROM subject WHERE SubjectCode IN ($placeholders)";
-                        
-                        // Prepare and bind parameters
-                        $stmt = $conn->prepare($sql);
-                        $stmt->bind_param(str_repeat('s', count($subjectCodes)), ...$subjectCodes);
-                        
-                        // Execute query
-                        $stmt->execute();
-                        $result = $stmt->get_result();
-
-                        // Loop through each result row
-                        while ($row = $result->fetch_assoc()) {
-                            $productName = $row['SubjectName'];
-                            $productImage = $row['subjectImage'];
-                            $productPrice = $row['SubjectPrice'];
-
-                            // Calculate subtotal
-                            $subtotal = $productPrice;
-
-                            // Update total and recurring total
-                            $total += $subtotal;
-                            $recurringTotal += $subtotal;
-
-                            // Output product details in table row
+                    if (isset($_SESSION['cart'])) {
+                        foreach ($_SESSION['cart'] as $subjectCode => $item) {
+                            $total += $item['subtotal'];
                             echo "<tr>
                                     <td class='product-details'>
-                                        <img src='$productImage' alt='Product Image'>
+                                        <img src='{$item['image']}' alt='Product Image'>
                                         <div class='product-info'>
-                                            <p>$productName</p>
+                                            <p>{$item['name']}</p>
                                         </div>
                                     </td>
-                                    <td>RM$productPrice</td>
-                                    <td>1</td>
-                                    <td>RM$subtotal</td>
+                                    <td>RM{$item['price']}</td>
+                                    <td>
+                                        <div class='quantity-controls'>
+                                            <a href='cart-page.php?action=decrease&subjectCode={$subjectCode}&form={$form}'>-</a>
+                                            <span>{$item['quantity']}</span>
+                                            <a href='cart-page.php?action=increase&subjectCode={$subjectCode}&form={$form}'>+</a>
+                                        </div>
+                                    </td>
+                                    <td>RM{$item['subtotal']}</td>
+                                    <td>
+                                        <a href='cart-page.php?action=remove&subjectCode={$subjectCode}&form={$form}' class='quantity-controls'>Remove</a>
+                                    </td>
                                 </tr>";
                         }
-
-                        // Close statement and connection
-                        $stmt->close();
-                        $conn->close();
                     }
                     ?>
                 </tbody>
@@ -239,19 +304,12 @@ $dbname = "starplus";
                         <td>Total</td>
                         <td>RM<?php echo number_format($total, 2); ?></td>
                     </tr>
-                    <tr>
-                        <td>Recurring totals</td>
-                        <td>RM<?php echo number_format($recurringTotal, 2); ?> / month</td>
-                    </tr>
-                    <tr>
-                        <td>Recurring total</td>
-                        <td>RM<?php echo number_format($recurringTotal, 2); ?> / month<br></td>
-                    </tr>
                 </table>
+                <br>
                 <a href="checkout-page.html" class="proceed-checkout"><strong>PROCEED TO CHECKOUT</strong></a>
             </div>
             <div class="add-subject">
-                <a href="subject-page.html"><button><strong> INGIN TAMBAH SUBJEK? KLIK DISINI</strong></button></a>
+                <a href="subscribe-form<?php echo $form; ?>.php"><button><strong> INGIN TAMBAH SUBJEK? KLIK DISINI</strong></button></a>
             </div>
         </div>
     </div>
