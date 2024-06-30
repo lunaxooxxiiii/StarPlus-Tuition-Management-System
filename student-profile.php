@@ -1,3 +1,70 @@
+<?php
+// Start a session
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['stud_email'])) {
+    header("Location: login.php"); // Redirect to login page if not logged in
+    exit();
+}
+
+// Database connection details
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "starplus";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Get the logged-in student's email
+$studentEmail = $_SESSION['stud_email'];
+
+// Initialize variables
+$firstName = "";
+$lastName = "";
+$password = "";
+
+// Fetch existing data
+$sql = "SELECT * FROM starplus.student WHERE StudentEmail='$studentEmail'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $firstName = $row['FirstName'];
+    $lastName = $row['LastName'];
+    $password = $row['StudentPassword'];
+}
+
+// Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get form data
+    $newFirstName = $_POST['first-name'];
+    $newLastName = $_POST['last-name'];
+    $newPassword = $_POST['password'];
+
+    // Update the database
+    $stmt = $conn->prepare("UPDATE starplus.student SET FirstName=?, LastName=?, StudentPassword=? WHERE StudentEmail=?");
+    $stmt->bind_param("ssss", $newFirstName, $newLastName, $newPassword, $studentEmail);
+
+    if ($stmt->execute()) {
+        echo "Profile updated successfully";
+    } else {
+        echo "Error updating profile: " . $stmt->error;
+    }
+
+    $stmt->close();
+}
+
+// Close connection
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +73,7 @@
     <title>Edit Profile</title>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <style>
+        /* Your existing CSS code here */
         * {
             margin: 0;
             padding: 0;
@@ -129,7 +197,7 @@
     <div class="sidebar">
         <h2><i class='bx bxs-user'></i> My profile</h2>
         <ul>
-            <li><a href="student-profile.html"><i class='bx bxs-id-card'></i> Profile</a></li>
+            <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
             <li><a href="class.html"><i class='bx bx-book-open'></i> Class</a></li>
             <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
             <li><a href="timetable.html"><i class='bx bx-calendar'></i> Timetable</a></li>
@@ -144,22 +212,20 @@
         </div>
             <div class="card-body">
                 <h3>Edit Profile</h3>
-                <form>
+                <form method="POST" action="">
                     <div class="form-group">
-                        <label for="full-name">Full Name :</label>
-                        <input type="text" id="full-name" name="full-name">
+                        <label for="first-name">First Name :</label>
+                        <input type="text" id="first-name" name="first-name" value="<?php echo htmlspecialchars($firstName); ?>">
                         <label for="last-name">Last Name :</label>
-                        <input type="text" id="last-name" name="last-name">
+                        <input type="text" id="last-name" name="last-name" value="<?php echo htmlspecialchars($lastName); ?>">
                     </div>
                     <div class="form-group full-width">
                         <label for="email">Email :</label>
-                        <input type="email" id="email" name="email">
+                        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($studentEmail); ?>" readonly>
                     </div>
                     <div class="form-group">
                         <label for="password">Password :</label>
-                        <input type="password" id="password" name="password">
-                        <label for="confirm-password">Confirm Password :</label>
-                        <input type="password" id="confirm-password" name="confirm-password">
+                        <input type="password" id="password" name="password" value="<?php echo htmlspecialchars($password); ?>">
                     </div>
                     <div class="form-actions">
                         <button type="button" class="btn-cancel">CANCEL</button>

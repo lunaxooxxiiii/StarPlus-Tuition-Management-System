@@ -35,26 +35,17 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         $row = $result->fetch_assoc();
         
         // Verify password
-        if (password_verify($plain_password, $row['StudentPassword'])) {
-            // Set session variables
-            $_SESSION['stud_email'] = $row['StudentEmail'];
-            
-
-        // Verify password
         if ($plain_password == $row['StudentPassword']) {
             // Set session variables
             $_SESSION['stud_email'] = $row['StudentEmail'];
 
             // Redirect to student profile page
-            header("Location: student-profile.html");
+            header("Location: class.html");
             exit();
         } else {
             // Incorrect password
             echo "Invalid email or password.";
         }
-    } else {
-        // Email does not exist
-        echo "Invalid email or password.";
     }
 } else {
     // Form data not set
