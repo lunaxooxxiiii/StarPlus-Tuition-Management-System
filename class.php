@@ -1,6 +1,69 @@
+<?php
+// Start a session
+session_start();
+
+// Include database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "starplus";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Get the current user ID (Assuming you have user authentication and session management in place)
+$userId = $_SESSION['stud_email'];
+
+// Fetch subscribed subjects from the student table
+$sql = "SELECT SubjectCode FROM student WHERE StudentEmail = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $userId);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Store subscribed subjects in an array
+$subjects = array();
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $subjectCodes = explode(',', $row['SubjectCode']);
+        $subjects = array_merge($subjects, $subjectCodes);
+    }
+}
+$stmt->close();
+
+// Remove duplicate subject codes
+$subjects = array_unique($subjects);
+
+// Initialize the classes array
+$classes = array();
+
+// Fetch classes for the subscribed subjects
+if (!empty($subjects)) {
+    $subjectCodes = implode("','", $subjects);
+    $classSql = "SELECT c.ClassID, c.ClassTime, c.ClassDay, c.LinkClass, c.TutorName, c.SubjectCode, s.SubjectName 
+                 FROM class c 
+                 JOIN subject s ON c.SubjectCode = s.SubjectCode 
+                 WHERE c.SubjectCode IN ('$subjectCodes')";
+    $classResult = $conn->query($classSql);
+
+    // Store classes in an array
+    if ($classResult->num_rows > 0) {
+        while ($classRow = $classResult->fetch_assoc()) {
+            $classes[] = $classRow;
+        }
+    }
+}
+
+// Close connection
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -171,7 +234,7 @@
         <h2><i class='bx bxs-user'></i> My profile</h2>
         <ul>
             <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
-            <li><a href="class.html"><i class='bx bx-book-open'></i> Class</a></li>
+            <li><a href="class.php"><i class='bx bx-book-open'></i> Class</a></li>
             <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
             <li><a href="timetable.html"><i class='bx bx-calendar'></i> Timetable</a></li>
             <li><a href="bill.html"><i class='bx bx-money'></i> Bill</a></li>
@@ -184,24 +247,19 @@
             <h3 class="card-title"><i class='bx bx-book-open'></i> Class</h3><br>
         </div>
         <div class="cards">
-            <div class="card-class">
-                <h3>LIVE CLASS</h3>
-                <p>SEJARAH - FORM5</p>
-                <p>TEACHER: HANIM</p>
-                <p>LINK CLASS: <a href="https://starplus/">https://starplus/</a></p>
-            </div>
-            <div class="card-class">
-                <h3>LIVE CLASS</h3>
-                <p>SEJARAH - FORM5</p>
-                <p>TEACHER: HANIM</p>
-                <p>LINK CLASS: <a href="https://starplus/">https://starplus/</a></p>
-            </div>
-            <div class="card-class">
-                <h3>LIVE CLASS</h3>
-                <p>SEJARAH - FORM5</p>
-                <p>TEACHER: HANIM</p>
-                <p>LINK CLASS: <a href="https://starplus/">https://starplus/</a></p>
-            </div>
+            <?php
+            if (!empty($classes)) {
+                foreach ($classes as $class) {
+                    echo "<div class='card-class'>
+                            <h3>LIVE CLASS</h3>
+                            <p>{$class['SubjectName']}</p>
+                            <p>LINK CLASS: <a href='{$class['LinkClass']}'>{$class['LinkClass']}</a></p>
+                          </div>";
+                }
+            } else {
+                echo "<p>No subscribed classes found.</p>";
+            }
+            ?>
         </div>
     </div>
 </body>

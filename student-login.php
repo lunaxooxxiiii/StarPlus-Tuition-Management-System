@@ -40,7 +40,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             $_SESSION['stud_email'] = $row['StudentEmail'];
 
             // Redirect to student profile page
-            header("Location: class.html");
+            header("Location: class.php");
             exit();
         } else {
             // Incorrect password

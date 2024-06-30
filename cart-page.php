@@ -203,7 +203,6 @@ if (isset($_GET['action']) && isset($_GET['subjectCode'])) {
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            margin-left: 35%;
         }
 
         .add-subject {
@@ -294,20 +293,25 @@ if (isset($_GET['action']) && isset($_GET['subjectCode'])) {
                 <button class="apply-coupon">APPLY COUPON</button>
             </div>
             <div class="cart-totals">
-                <h2>Cart totals</h2>
-                <table>
-                    <tr>
-                        <td>Subtotal</td>
-                        <td>RM<?php echo number_format($total, 2); ?></td>
-                    </tr>
-                    <tr>
-                        <td>Total</td>
-                        <td>RM<?php echo number_format($total, 2); ?></td>
-                    </tr>
-                </table>
-                <br>
-                <a href="checkout-page.html" class="proceed-checkout"><strong>PROCEED TO CHECKOUT</strong></a>
-            </div>
+             <h2>Cart totals</h2>
+    <table>
+        <tr>
+            <td>Subtotal</td>
+            <td>RM<?php echo number_format($total, 2); ?></td>
+        </tr>
+        <tr>
+            <td>Total</td>
+            <td>RM<?php echo number_format($total, 2); ?></td>
+        </tr>
+    </table>
+    <br>
+    <form action="checkout-page.php" method="post">
+        <input type="hidden" name="cart" value='<?php echo json_encode($_SESSION['cart']); ?>'>
+        <input type="hidden" name="total" value='<?php echo $total; ?>'>
+        <button type="submit" class="proceed-checkout"><strong>PROCEED TO CHECKOUT</strong></button>
+    </form>
+</div>
+
             <div class="add-subject">
                 <a href="subscribe-form<?php echo $form; ?>.php"><button><strong> INGIN TAMBAH SUBJEK? KLIK DISINI</strong></button></a>
             </div>

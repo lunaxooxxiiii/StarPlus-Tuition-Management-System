@@ -192,13 +192,26 @@ $conn->close();
             color: white;
         }
     </style>
+    <script>
+        function validateForm() {
+            var firstName = document.getElementById("first-name").value.trim();
+            var lastName = document.getElementById("last-name").value.trim();
+            var password = document.getElementById("password").value.trim();
+
+            if (firstName === "" || lastName === "" || password === "") {
+                alert("All fields must be filled out");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
     <div class="sidebar">
         <h2><i class='bx bxs-user'></i> My profile</h2>
         <ul>
             <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
-            <li><a href="class.html"><i class='bx bx-book-open'></i> Class</a></li>
+            <li><a href="class.php"><i class='bx bx-book-open'></i> Class</a></li>
             <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
             <li><a href="timetable.html"><i class='bx bx-calendar'></i> Timetable</a></li>
             <li><a href="bill.html"><i class='bx bx-money'></i> Bill</a></li>
@@ -212,7 +225,7 @@ $conn->close();
         </div>
             <div class="card-body">
                 <h3>Edit Profile</h3>
-                <form method="POST" action="">
+                <form id="edit-profile-form" method="POST" action="" onsubmit="return validateForm()">
                     <div class="form-group">
                         <label for="first-name">First Name :</label>
                         <input type="text" id="first-name" name="first-name" value="<?php echo htmlspecialchars($firstName); ?>">
