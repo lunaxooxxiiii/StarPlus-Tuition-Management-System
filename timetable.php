@@ -17,12 +17,12 @@ if ($conn->connect_error) {
 }
 
 // Get the current user ID (Assuming you have user authentication and session management in place)
-$userId = $_SESSION['user_id'];
+$userId = $_SESSION['stud_email'];
 
 // Fetch subscribed subjects from the student table
-$sql = "SELECT SubjectCode FROM student WHERE UserID = ?";
+$sql = "SELECT SubjectCode FROM student WHERE StudentEmail = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $userId);
+$stmt->bind_param("s", $userId);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -30,22 +30,35 @@ $result = $stmt->get_result();
 $subjects = array();
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $subjects[] = $row['SubjectCode'];
+        $subjectCodes = explode(',', $row['SubjectCode']);
+        $subjects = array_merge($subjects, $subjectCodes);
     }
 }
 $stmt->close();
 
-// Fetch timetable for the subscribed subjects
+// Remove duplicate subject codes
+$subjects = array_unique($subjects);
+
+// Initialize the classes array
+$classes = array();
+
+// Fetch classes for the subscribed subjects
 if (!empty($subjects)) {
     $subjectCodes = implode("','", $subjects);
-    $timetableSql = "SELECT ClassDay, ClassTime, SubjectCode, TutorName FROM class WHERE SubjectCode IN ('$subjectCodes')";
-    $timetableResult = $conn->query($timetableSql);
+    $classSql = "SELECT c.ClassID, c.ClassTime, c.ClassDay, c.LinkClass, c.TutorName, c.SubjectCode, s.SubjectName 
+                 FROM class c 
+                 JOIN subject s ON c.SubjectCode = s.SubjectCode 
+                 WHERE c.SubjectCode IN ('$subjectCodes')";
+    $classResult = $conn->query($classSql);
 
-    // Store timetable in an array
-    $timetable = array();
-    if ($timetableResult->num_rows > 0) {
-        while ($timetableRow = $timetableResult->fetch_assoc()) {
-            $timetable[$timetableRow['ClassDay']][] = $timetableRow;
+    // Store classes in an array
+    if ($classResult->num_rows > 0) {
+        while ($classRow = $classResult->fetch_assoc()) {
+            $day = $classRow['ClassDay'];
+            if (!isset($classes[$day])) {
+                $classes[$day] = array();
+            }
+            $classes[$day][] = $classRow;
         }
     }
 }
@@ -53,6 +66,7 @@ if (!empty($subjects)) {
 // Close connection
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -136,8 +150,7 @@ $conn->close();
             color: #fff;
             border: 1px solid transparent;
             border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease,
-              border-color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
             cursor: pointer;
         }
 
@@ -178,10 +191,7 @@ $conn->close();
             }
         }
     </style>
-    <link
-      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -189,12 +199,12 @@ $conn->close();
         <div class="sidebar">
             <h2><i class="bx bxs-user"></i> My profile</h2>
             <ul>
-                <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
+            <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
                 <li><a href="class.php"><i class='bx bx-book-open'></i> Class</a></li>
                 <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
-                <li><a href="timetable.html"><i class='bx bx-calendar'></i> Timetable</a></li>
-                <li><a href="bill.html"><i class='bx bx-money'></i> Bill</a></li>
-                <li><a href="announcement.html"><i class='bx bx-bell'></i> Announcement</a></li>
+                <li><a href="timetable.php"><i class='bx bx-calendar'></i> Timetable</a></li>
+                <li><a href="bill.php"><i class='bx bx-money'></i> Bill</a></li>
+                <li><a href="announcement.php"><i class='bx bx-bell'></i> Announcement</a></li>
                 <li><a href="student-login.html"><i class='bx bx-log-out'></i> Logout</a></li>
             </ul>
         </div>
@@ -202,26 +212,21 @@ $conn->close();
             <div class="card-body">
                 <h3 class="card-title"><i class="bx bx-calendar"></i> Timetable</h3>
                 <br />
-                <ul class="nav nav-tabs">
-                    <li class="nav-item active" data-day="Monday">Monday</li>
-                    <li class="nav-item" data-day="Tuesday">Tuesday</li>
-                    <li class="nav-item" data-day="Wednesday">Wednesday</li>
-                    <li class="nav-item" data-day="Thursday">Thursday</li>
-                    <li class="nav-item" data-day="Friday">Friday</li>
-                </ul>
                 <div class="tab-content mt-2">
                     <?php foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] as $day): ?>
                     <div class="tab-pane fade <?php echo $day == 'Monday' ? 'show active' : ''; ?>" id="<?php echo $day; ?>">
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
-                                    <?php if (isset($timetable[$day])): ?>
-                                        <?php foreach ($timetable[$day] as $class): ?>
+                                    <?php if (isset($classes[$day]) && count($classes[$day]) > 0): ?>
+                                        <?php foreach ($classes[$day] as $class): ?>
                                         <tr>
                                             <th scope="row"><?php echo $class['ClassTime']; ?></th>
                                             <td>
-                                                <span class="text-primary"><?php echo $class['SubjectCode']; ?></span><br />
-                                                <span class="text-primary">Nama Tutor:</span><?php echo $class['TutorName']; ?><br />
+                                                <span class="text-primary"><?php echo $day['ClassDay']; ?></span><br />
+                                                <span class="text-primary"><?php echo $class['SubjectName']; ?></span><br />
+                                                <span class="text-primary">Nama Tutor: <?php echo $class['TutorName']; ?></span><br />
+                                                <span class="text-primary">Link Class: <a href="<?php echo $class['LinkClass']; ?>"><?php echo $class['LinkClass']; ?></a></span><br />
                                             </td>
                                         </tr>
                                         <?php endforeach; ?>

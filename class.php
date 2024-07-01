@@ -45,7 +45,7 @@ $classes = array();
 // Fetch classes for the subscribed subjects
 if (!empty($subjects)) {
     $subjectCodes = implode("','", $subjects);
-    $classSql = "SELECT c.ClassID, c.ClassTime, c.ClassDay, c.LinkClass, c.TutorName, c.SubjectCode, s.SubjectName 
+    $classSql = "SELECT DISTINCT c.ClassID, c.ClassTime, c.ClassDay, c.LinkClass, c.TutorName, c.SubjectCode, s.SubjectName 
                  FROM class c 
                  JOIN subject s ON c.SubjectCode = s.SubjectCode 
                  WHERE c.SubjectCode IN ('$subjectCodes')";
@@ -233,13 +233,13 @@ $conn->close();
     <div class="sidebar">
         <h2><i class='bx bxs-user'></i> My profile</h2>
         <ul>
-            <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
-            <li><a href="class.php"><i class='bx bx-book-open'></i> Class</a></li>
-            <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
-            <li><a href="timetable.html"><i class='bx bx-calendar'></i> Timetable</a></li>
-            <li><a href="bill.html"><i class='bx bx-money'></i> Bill</a></li>
-            <li><a href="announcement.html"><i class='bx bx-bell'></i> Announcement</a></li>
-            <li><a href="student-login.html"><i class='bx bx-log-out'></i> Logout</a></li>
+        <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
+                <li><a href="class.php"><i class='bx bx-book-open'></i> Class</a></li>
+                <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
+                <li><a href="timetable.php"><i class='bx bx-calendar'></i> Timetable</a></li>
+                <li><a href="bill.php"><i class='bx bx-money'></i> Bill</a></li>
+                <li><a href="announcement.php"><i class='bx bx-bell'></i> Announcement</a></li>
+                <li><a href="student-login.html"><i class='bx bx-log-out'></i> Logout</a></li>
         </ul>
     </div>
     <div class="main_content">
@@ -249,12 +249,16 @@ $conn->close();
         <div class="cards">
             <?php
             if (!empty($classes)) {
+                $displayedClasses = array();
                 foreach ($classes as $class) {
-                    echo "<div class='card-class'>
-                            <h3>LIVE CLASS</h3>
-                            <p>{$class['SubjectName']}</p>
-                            <p>LINK CLASS: <a href='{$class['LinkClass']}'>{$class['LinkClass']}</a></p>
-                          </div>";
+                    if (!in_array($class['SubjectName'], $displayedClasses)) {
+                        echo "<div class='card-class'>
+                                <h3>LIVE CLASS</h3>
+                                <p>{$class['SubjectName']}</p>
+                                <p>LINK CLASS: <a href='{$class['LinkClass']}'>{$class['LinkClass']}</a></p>
+                              </div>";
+                        $displayedClasses[] = $class['SubjectName'];
+                    }
                 }
             } else {
                 echo "<p>No subscribed classes found.</p>";
@@ -263,5 +267,4 @@ $conn->close();
         </div>
     </div>
 </body>
-
 </html>

@@ -1,11 +1,81 @@
+<?php
+// Start a session
+session_start();
+
+// Include database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "starplus";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Get the current user ID (Assuming you have user authentication and session management in place)
+$userId = $_SESSION['stud_email'];
+
+// Fetch subscribed subjects from the student table
+$sql = "SELECT SubjectCode FROM student WHERE StudentEmail = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $userId);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Store subscribed subjects in an array
+$subjects = array();
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $subjectCodes = explode(',', $row['SubjectCode']);
+        $subjects = array_merge($subjects, $subjectCodes);
+    }
+}
+$stmt->close();
+
+// Remove duplicate subject codes
+$subjects = array_unique($subjects);
+
+// Initialize the subscriptions array
+$subscriptions = array();
+
+// Fetch subscription details for the subscribed subjects
+if (!empty($subjects)) {
+    $subjectCodes = implode("','", $subjects);
+    $subscriptionSql = "SELECT s.SubjectName, s.SubjectPrice 
+                        FROM subject s 
+                        WHERE s.SubjectCode IN ('$subjectCodes')";
+    $subscriptionResult = $conn->query($subscriptionSql);
+
+    // Store subscriptions in an array
+    if ($subscriptionResult->num_rows > 0) {
+        while ($subscriptionRow = $subscriptionResult->fetch_assoc()) {
+            $subscriptions[] = $subscriptionRow;
+        }
+    }
+}
+
+// Calculate totals
+$subtotal = 0;
+foreach ($subscriptions as $subscription) {
+    $subtotal += $subscription['SubjectPrice'];
+}
+$total = $subtotal;
+
+// Close connection
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bill</title>
-    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -137,12 +207,12 @@
         <div class="sidebar">
             <h2><i class="bx bxs-user"></i> My profile</h2>
             <ul>
-                <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
-                <li><a href="class.html"><i class='bx bx-book-open'></i> Class</a></li>
+            <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
+                <li><a href="class.php"><i class='bx bx-book-open'></i> Class</a></li>
                 <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
-                <li><a href="timetable.html"><i class='bx bx-calendar'></i> Timetable</a></li>
-                <li><a href="bill.html"><i class='bx bx-money'></i> Bill</a></li>
-                <li><a href="announcement.html"><i class='bx bx-bell'></i> Announcement</a></li>
+                <li><a href="timetable.php"><i class='bx bx-calendar'></i> Timetable</a></li>
+                <li><a href="bill.php"><i class='bx bx-money'></i> Bill</a></li>
+                <li><a href="announcement.php"><i class='bx bx-bell'></i> Announcement</a></li>
                 <li><a href="student-login.html"><i class='bx bx-log-out'></i> Logout</a></li>
             </ul>
         </div>
@@ -159,26 +229,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach ($subscriptions as $subscription): ?>
                             <tr>
                                 <td><i class="bx bx-x"></i></td>
-                                <td>LIVE ONLINE TUITION - GEOGRAFI - FORM3 ×1</td>
-                                <td>RM40.00 / month</td>
+                                <td>LIVE ONLINE TUITION - <?php echo $subscription['SubjectName']; ?></td>
+                                <td>RM<?php echo number_format($subscription['SubjectPrice'], 2); ?> / month</td>
                             </tr>
-                            <tr>
-                                <td><i class="bx bx-x"></i></td>
-                                <td>LIVE ONLINE TUITION - SEJARAH - FORM3 ×1</td>
-                                <td>RM40.00 / month</td>
-                            </tr>
-                            <tr>
-                                <td><i class="bx bx-x"></i></td>
-                                <td>LIVE ONLINE TUITION - SAINS - FORM3 ×1</td>
-                                <td>RM40.00 / month</td>
-                            </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                     <div class="subscription-footer">
-                        <div>Subtotal: RM120.00</div>
-                        <div>Total: RM120.00 / month</div>
+                        <div>Subtotal: RM<?php echo number_format($subtotal, 2); ?></div>
+                        <div>Total: RM<?php echo number_format($total, 2); ?> / month</div>
                     </div>
                 </div>
             </div>
