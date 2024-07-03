@@ -44,12 +44,15 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             exit();
         } else {
             // Incorrect password
-            echo "Invalid email or password.";
+            echo "<script>alert('Invalid password.'); window.location.href='student-login.html';</script>";
         }
+    } else {
+        // User does not exist
+        echo "<script>alert('User does not exist!'); window.location.href='student-login.html';</script>";
     }
 } else {
     // Form data not set
-    echo "Please enter email and password.";
+    echo "<script>alert('Please enter email and password.'); window.location.href='student-login.html';</script>";
 }
 
 // Close connection

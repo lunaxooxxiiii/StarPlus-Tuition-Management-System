@@ -73,7 +73,6 @@ $conn->close();
     <title>Edit Profile</title>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        /* Your existing CSS code here */
         * {
             margin: 0;
             padding: 0;
@@ -232,7 +231,7 @@ $conn->close();
                         <label for="last-name">Last Name :</label>
                         <input type="text" id="last-name" name="last-name" value="<?php echo htmlspecialchars($lastName); ?>">
                     </div>
-                    <div class="form-group full-width">
+                    <div class="form-group">
                         <label for="email">Email :</label>
                         <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($studentEmail); ?>" readonly>
                     </div>
