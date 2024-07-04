@@ -61,55 +61,10 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Announcement</title>
+    <title>Student Announcement</title>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style-student.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            list-style: none;
-            text-decoration: none;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
-
-        body {
-            background-color: white;
-            display: flex;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .sidebar {
-            width: 250px;
-            background: #23255D;
-            padding: 30px 0;
-            position: fixed;
-            height: 100%;
-        }
-
-        .sidebar h2 {
-            color: #fff;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .sidebar ul li {
-            padding: 15px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .sidebar ul li a {
-            color: white;
-            display: block;
-            font-size: 20px;
-        }
-
-        .sidebar ul li:hover {
-            background-color: #594f8d;
-        }
-
         .main_content {
             width: calc(100% - 250px);
             margin-left: 250px;
@@ -188,13 +143,13 @@ $conn->close();
     <div class="sidebar">
         <h2><i class='bx bxs-user'></i> My profile</h2>
         <ul>
-        <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
-                <li><a href="class.php"><i class='bx bx-book-open'></i> Class</a></li>
-                <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
-                <li><a href="timetable.php"><i class='bx bx-calendar'></i> Timetable</a></li>
-                <li><a href="bill.php"><i class='bx bx-money'></i> Bill</a></li>
-                <li><a href="announcement.php"><i class='bx bx-bell'></i> Announcement</a></li>
-                <li><a href="student-login.html"><i class='bx bx-log-out'></i> Logout</a></li>
+            <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
+            <li><a href="class.php"><i class='bx bx-book-open'></i> Class</a></li>
+            <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
+            <li><a href="timetable.php"><i class='bx bx-calendar'></i> Timetable</a></li>
+            <li><a href="bill.php"><i class='bx bx-money'></i> Bill</a></li>
+            <li><a href="announcement.php"><i class='bx bx-bell'></i> Announcement</a></li>
+            <li><a href="login-choice.html"><i class='bx bx-log-out'></i> Logout</a></li>
         </ul>
     </div>
     <div class="main_content">

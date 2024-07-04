@@ -72,41 +72,32 @@ section a{
 .input-submit{
     position: relative;
 }
-.submit-btn{
+.submit-btn, .register-btn{
     width: 100%;
     height: 60px;
-    background: #C40248;
     border: none;
     border-radius: 30px;
     cursor: pointer;
     transition: .3s;
+    color: white;
+    text-align: center;
+    font-size: 17px;
+    line-height: 60px; /* vertically centers the text inside the button */
 }
-.input-submit label{
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    color: #fff;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    cursor: pointer;
+.submit-btn{
+    background: #C40248;
 }
 .register-btn{
-    width: 100%;
-    height: 60px;
     background: #363636;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: .3s;
+}
+.submit-btn:hover, .register-btn:hover{
+    transform: scale(1.05,1);
 }
 .submit-btn:hover{
     background: red;
-    transform: scale(1.05,1);
 }
 .register-btn:hover{
     background: red;
-    transform: scale(1.05,1);
 }
 </style>
 <body>
@@ -131,14 +122,12 @@ section a{
                 </section>
             </div>
             <div class="input-submit">
-                <button type="submit" class="submit-btn" id="submit"></button>
-                <label for="submit">Log In</label>
-            </div>
-            <div class="input-submit">
-                <button class="register-btn" id="register" onclick="location.href='registration-student.php';"></button>
-                <label for="register">Register</label>    
+                <button type="submit" class="submit-btn" id="submit">Log In</button>
             </div>
         </form>
+        <div class="input-submit">
+            <button class="register-btn" id="register" onclick="location.href='registration-student.php';">Register</button>
+        </div>
     </div>
 </body>
 </html>

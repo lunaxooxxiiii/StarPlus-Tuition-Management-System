@@ -16,16 +16,15 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch subjects for Form 3
-$sql_form_3 = "SELECT SubjectCode, SubjectName, subjectImage, SubjectPrice FROM subject WHERE Form = 'F3'";
-$result_form_3 = $conn->query($sql_form_3);
+$sql_form_2 = "SELECT SubjectCode, SubjectName, subjectImage, SubjectPrice FROM subject WHERE Form = 'F2'";
+$result_form_2 = $conn->query($sql_form_2);
 
 // Array to store fetched subjects
-$subjects_form_3 = array();
+$subjects_form_2 = array();
 
-if ($result_form_3->num_rows > 0) {
-    while ($row = $result_form_3->fetch_assoc()) {
-        $subjects_form_3[] = $row;
+if ($result_form_2->num_rows > 0) {
+    while ($row = $result_form_2->fetch_assoc()) {
+        $subjects_form_2[] = $row;
     }
 }
 
@@ -38,7 +37,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form 3 Subjects</title>
+    <title>Form 2 Subjects</title>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <style>
@@ -107,21 +106,21 @@ $conn->close();
     <div class="main_content">
         <a href="subscribe.html"><i class='bx bx-arrow-back'> BACK </i></a>
         
-        <h3>Form 3 Subjects</h3>
+        <h3>Form 2 Subjects</h3>
         <div class="row">
             <?php 
             $count = 0;
-            foreach ($subjects_form_3 as $subject) : 
+            foreach ($subjects_form_2 as $subject) : 
                 $count++;
             ?>
                 <div class="card">
                     <div class="card-body">
-                    <a href="cart-page.php?subjectCode=<?php echo $subject['SubjectCode']; ?>&form=3">
+                    <a href="cart-page.php?subjectCode=<?php echo $subject['SubjectCode']; ?>&form=2">
                         <img src="<?php echo $subject['subjectImage']; ?>" alt="<?php echo $subject['SubjectName']; ?>">
                     </a>
                     </div>
                 </div>
-                <?php if ($count % 4 == 0 && $count < count($subjects_form_3)) : ?>
+                <?php if ($count % 3 == 0 && $count < count($subjects_form_2)) : ?>
                     </div><div class="row">
                 <?php endif; ?>
             <?php endforeach; ?>

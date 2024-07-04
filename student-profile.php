@@ -190,6 +190,10 @@ $conn->close();
             background-color: #2e3b87;
             color: white;
         }
+
+        .password-toggle {
+            cursor: pointer;
+        }
     </style>
     <script>
         function validateForm() {
@@ -203,25 +207,38 @@ $conn->close();
             }
             return true;
         }
+
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            var toggleIcon = document.getElementById("toggle-password-icon");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleIcon.classList.remove("bx-hide");
+                toggleIcon.classList.add("bx-show");
+            } else {
+                passwordField.type = "password";
+                toggleIcon.classList.remove("bx-show");
+                toggleIcon.classList.add("bx-hide");
+            }
+        }
     </script>
 </head>
 <body>
     <div class="sidebar">
         <h2><i class='bx bxs-user'></i> My profile</h2>
         <ul>
-        <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
-                <li><a href="class.php"><i class='bx bx-book-open'></i> Class</a></li>
-                <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
-                <li><a href="timetable.php"><i class='bx bx-calendar'></i> Timetable</a></li>
-                <li><a href="bill.php"><i class='bx bx-money'></i> Bill</a></li>
-                <li><a href="announcement.php"><i class='bx bx-bell'></i> Announcement</a></li>
-                <li><a href="student-login.html"><i class='bx bx-log-out'></i> Logout</a></li>
+            <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
+            <li><a href="class.php"><i class='bx bx-book-open'></i> Class</a></li>
+            <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
+            <li><a href="timetable.php"><i class='bx bx-calendar'></i> Timetable</a></li>
+            <li><a href="bill.php"><i class='bx bx-money'></i> Bill</a></li>
+            <li><a href="announcement.php"><i class='bx bx-bell'></i> Announcement</a></li>
+            <li><a href="login-choice.html"><i class='bx bx-log-out'></i> Logout</a></li>
         </ul>
     </div>
     <div class="main_content">
         <div class="card">
             <h3 class="card-title"><i class='bx bxs-id-card'></i> Profile</h3><br>
-        </div>
             <div class="card-body">
                 <h3>Edit Profile</h3>
                 <form id="edit-profile-form" method="POST" action="" onsubmit="return validateForm()">
@@ -233,11 +250,12 @@ $conn->close();
                     </div>
                     <div class="form-group">
                         <label for="email">Email :</label>
-                        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($studentEmail); ?>" readonly>
+                        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($studentEmail); ?>">
                     </div>
                     <div class="form-group">
                         <label for="password">Password :</label>
                         <input type="password" id="password" name="password" value="<?php echo htmlspecialchars($password); ?>">
+                        <i class='bx bx-hide password-toggle' id="toggle-password-icon" onclick="togglePassword()"></i>
                     </div>
                     <div class="form-actions">
                         <button type="button" class="btn-cancel">CANCEL</button>

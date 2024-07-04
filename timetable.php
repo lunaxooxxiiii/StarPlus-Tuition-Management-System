@@ -152,14 +152,17 @@ $conn->close();
             border-radius: 5px;
             transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
             cursor: pointer;
+            background-color: #5F9EA0;
         }
 
         .nav-item:hover {
-            background-color: #594f8d;
+            background-color: #4b8282;
         }
 
         .nav-item.active {
             font-weight: bold;
+            background-color: #5F9EA0;
+            color: white;
         }
 
         .table-responsive {
@@ -199,13 +202,13 @@ $conn->close();
         <div class="sidebar">
             <h2><i class="bx bxs-user"></i> My profile</h2>
             <ul>
-            <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
+                <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
                 <li><a href="class.php"><i class='bx bx-book-open'></i> Class</a></li>
                 <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
                 <li><a href="timetable.php"><i class='bx bx-calendar'></i> Timetable</a></li>
                 <li><a href="bill.php"><i class='bx bx-money'></i> Bill</a></li>
                 <li><a href="announcement.php"><i class='bx bx-bell'></i> Announcement</a></li>
-                <li><a href="student-login.html"><i class='bx bx-log-out'></i> Logout</a></li>
+                <li><a href="login-choice.html"><i class='bx bx-log-out'></i> Logout</a></li>
             </ul>
         </div>
         <div class="main_content">
@@ -223,16 +226,14 @@ $conn->close();
                                         <tr>
                                             <th scope="row"><?php echo $class['ClassTime']; ?></th>
                                             <td>
-                                                <span class="text-primary"><?php echo $day['ClassDay']; ?></span><br />
+                                                <span class="text-primary"><?php echo $class['ClassDay']; ?></span><br />
                                                 <span class="text-primary"><?php echo $class['SubjectName']; ?></span><br />
-                                                <span class="text-primary">Nama Tutor: <?php echo $class['TutorName']; ?></span><br />
-                                                <span class="text-primary">Link Class: <a href="<?php echo $class['LinkClass']; ?>"><?php echo $class['LinkClass']; ?></a></span><br />
                                             </td>
                                         </tr>
                                         <?php endforeach; ?>
                                     <?php else: ?>
                                     <tr>
-                                        <td>No classes scheduled for this day.</td>
+                                        <td>No classes scheduled for <?php echo $day; ?>.</td>
                                     </tr>
                                     <?php endif; ?>
                                 </tbody>

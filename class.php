@@ -2,24 +2,19 @@
 // Start a session
 session_start();
 
-// Include database connection
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "starplus";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get the current user ID (Assuming you have user authentication and session management in place)
 $userId = $_SESSION['stud_email'];
 
-// Fetch subscribed subjects from the student table
 $sql = "SELECT SubjectCode FROM student WHERE StudentEmail = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $userId);
@@ -69,53 +64,8 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Class</title>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style-student.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            list-style: none;
-            text-decoration: none;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
-
-        body {
-            background-color: white;
-            display: flex;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .sidebar {
-            width: 250px;
-            background: #23255D;
-            padding: 30px 0;
-            position: fixed;
-            height: 100%;
-        }
-
-        .sidebar h2 {
-            color: #fff;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .sidebar ul li {
-            padding: 15px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .sidebar ul li a {
-            color: white;
-            display: block;
-            font-size: 20px;
-        }
-
-        .sidebar ul li:hover {
-            background-color: #594f8d;
-        }
-
         .main_content {
             width: calc(100% - 250px);
             margin-left: 250px;
@@ -233,13 +183,13 @@ $conn->close();
     <div class="sidebar">
         <h2><i class='bx bxs-user'></i> My profile</h2>
         <ul>
-        <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
-                <li><a href="class.php"><i class='bx bx-book-open'></i> Class</a></li>
-                <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
-                <li><a href="timetable.php"><i class='bx bx-calendar'></i> Timetable</a></li>
-                <li><a href="bill.php"><i class='bx bx-money'></i> Bill</a></li>
-                <li><a href="announcement.php"><i class='bx bx-bell'></i> Announcement</a></li>
-                <li><a href="student-login.html"><i class='bx bx-log-out'></i> Logout</a></li>
+            <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
+            <li><a href="class.php"><i class='bx bx-book-open'></i> Class</a></li>
+            <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
+            <li><a href="timetable.php"><i class='bx bx-calendar'></i> Timetable</a></li>
+            <li><a href="bill.php"><i class='bx bx-money'></i> Bill</a></li>
+            <li><a href="announcement.php"><i class='bx bx-bell'></i> Announcement</a></li>
+            <li><a href="login-choice.html"><i class='bx bx-log-out'></i> Logout</a></li>
         </ul>
     </div>
     <div class="main_content">
@@ -261,7 +211,7 @@ $conn->close();
                     }
                 }
             } else {
-                echo "<p>No subscribed classes found.</p>";
+                echo "<p>No subscribed classes found. Please go to Subscribe page.</p>";
             }
             ?>
         </div>

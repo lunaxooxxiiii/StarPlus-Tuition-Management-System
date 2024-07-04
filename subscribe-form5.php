@@ -38,7 +38,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form 4 Subjects</title>
+    <title>Form 5 Subjects</title>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <style>
@@ -107,8 +107,7 @@ $conn->close();
     <div class="main_content">
         <a href="subscribe.html"><i class='bx bx-arrow-back'> BACK </i></a>
         
-        <!-- Display subjects for Form 4 -->
-        <h3>Form 4 Subjects</h3>
+        <h3>Form 5 Subjects</h3>
         <div class="row">
             <?php 
             $count = 0;

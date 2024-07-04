@@ -54,28 +54,3 @@ body {
 .sidebar ul li:hover {
     background-color: #594f8d;
 }
-
-.main_content {
-    width: calc(100% - 250px);
-    margin-left: 250px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-.row {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-}
-
-.card {
-    background: #fff;
-    text-align: center;
-    flex: 1;
-}
-
-.card-body {
-    padding: 20px;
-    font-size: 1em;
-}

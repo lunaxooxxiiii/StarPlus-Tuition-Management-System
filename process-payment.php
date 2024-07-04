@@ -23,6 +23,26 @@ if ($conn->connect_error) {
 // Get the current user ID (Assuming you have user authentication and session management in place)
 $userId = $_SESSION['stud_email'];
 
+// Function to generate the next PaymentID
+function generatePaymentID($conn) {
+    $query = "SELECT PaymentID FROM payment ORDER BY PaymentID DESC LIMIT 1";
+    $result = $conn->query($query);
+    
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $lastID = $row['PaymentID'];
+        $number = (int)substr($lastID, 1);
+        $newID = 'P' . str_pad($number + 1, 3, '0', STR_PAD_LEFT);
+    } else {
+        $newID = 'P001';
+    }
+    
+    return $newID;
+}
+
+// Generate new PaymentID
+$newPaymentID = generatePaymentID($conn);
+
 // Assuming you are storing multiple subject codes in a single column as a comma-separated list
 foreach ($cart as $subjectCode => $item) {
     // First, retrieve the current SubjectCode from the database
@@ -52,6 +72,18 @@ foreach ($cart as $subjectCode => $item) {
     $updateStmt->execute();
     $updateStmt->close();
 }
+
+// Insert new payment data into the payment table
+$paymentAmount = 'RM' . number_format($total, 2);
+$paymentStatus = 'Pending'; // Set the initial status
+$paymentDate = date('Y-m-d'); // Set the current date
+
+$insertPaymentSql = "INSERT INTO payment (PaymentID, PaymentAmount, PaymentStatus, PaymentDate, StudentEmail, AdminEmail) VALUES (?, ?, ?, ?, ?, ?)";
+$insertPaymentStmt = $conn->prepare($insertPaymentSql);
+$adminEmail = 'admin01@gmail.com'; // Assuming a fixed admin email
+$insertPaymentStmt->bind_param("ssssss", $newPaymentID, $paymentAmount, $paymentStatus, $paymentDate, $userId, $adminEmail);
+$insertPaymentStmt->execute();
+$insertPaymentStmt->close();
 
 // Close connection
 $conn->close();
