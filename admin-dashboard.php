@@ -351,7 +351,7 @@ $conn->close();
     <script>
         function confirmDelete(firstName, lastName) {
             if (confirm("Are you sure you want to delete " + firstName + " " + lastName + "?")) {
-                window.location.href = "delete_student.php?firstName=" + firstName + "&lastName=" + lastName;
+                window.location.href = "delete-student.php?firstName=" + firstName + "&lastName=" + lastName;
             }
         }
 

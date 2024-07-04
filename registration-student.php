@@ -23,12 +23,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $lastName = $_POST['lastName'];
     $email = $_POST['email'];
     $plain_password = $_POST['password'];
+    $form = $_POST['form'];
 
     // Protect against SQL injection
     $firstName = $conn->real_escape_string($firstName);
     $lastName = $conn->real_escape_string($lastName);
     $email = $conn->real_escape_string($email);
     $plain_password = $conn->real_escape_string($plain_password);
+    $form = $conn->real_escape_string($form);
 
     // Check if email already exists
     $sql = "SELECT * FROM starplus.student WHERE StudentEmail='$email'";
@@ -39,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script type='text/javascript'>alert('$message');</script>";
     } else {
         // Insert new student into the database
-        $sql = "INSERT INTO starplus.student (FirstName, LastName, StudentEmail, StudentPassword) VALUES ('$firstName', '$lastName', '$email', '$plain_password')";
+        $sql = "INSERT INTO starplus.student (FirstName, LastName, StudentEmail, StudentPassword, Form) VALUES ('$firstName', '$lastName', '$email', '$plain_password', '$form')";
 
         if ($conn->query($sql) === TRUE) {
             $message = "New student registered successfully.";
@@ -54,7 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Close connection
 $conn->close();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,11 +88,12 @@ $conn->close();
         justify-content: center;
         flex-direction: column;
         width: 440px;
-        height: 480px;
+        height: 630px;
         padding: 30px;
     }
 
-    .input-box .input-field {
+    .input-box .input-field,
+    .input-box select {
         width: 100%;
         height: 60px;
         font-size: 17px;
@@ -108,31 +110,38 @@ $conn->close();
         color: #222;
     }
 
-    .input-submit {
+    .input-submit,
+    .input-cancel {
         position: relative;
+        margin-bottom: 15px;
     }
 
-    .submit-btn {
+    .submit-btn,
+    .cancel-btn {
         width: 100%;
         height: 60px;
-        background: #C40248;
         border: none;
         border-radius: 30px;
         cursor: pointer;
         transition: .3s;
+        color: #fff;
     }
 
-    .input-submit label {
-        position: absolute;
-        top: 45%;
-        left: 50%;
-        color: #fff;
-        transform: translate(-50%, -50%);
-        cursor: pointer;
+    .submit-btn {
+        background: #C40248;
+    }
+
+    .cancel-btn {
+        background: #555;
     }
 
     .submit-btn:hover {
         background: red;
+        transform: scale(1.05, 1);
+    }
+
+    .cancel-btn:hover {
+        background: #333;
         transform: scale(1.05, 1);
     }
 </style>
@@ -154,8 +163,21 @@ $conn->close();
             <div class="input-box">
                 <input type="password" class="input-field" placeholder="Password" name="password" autocomplete="off" required>
             </div>
+            <div class="input-box">
+                <select name="form" class="input-field" required>
+                    <option value="" disabled selected>Select Form</option>
+                    <option value="F1">Form 1</option>
+                    <option value="F2">Form 2</option>
+                    <option value="F3">Form 3</option>
+                    <option value="F4">Form 4</option>
+                    <option value="F5">Form 5</option>
+                </select>
+            </div>
             <div class="input-submit">
                 <button type="submit" class="submit-btn" id="submit">Register</button>
+            </div>
+            <div class="input-cancel">
+                <a href="student-login.php" class="cancel-btn" id="cancel">Cancel</a>
             </div>
         </form>
     </div>
