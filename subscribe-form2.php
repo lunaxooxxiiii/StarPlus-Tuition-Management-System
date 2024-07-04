@@ -39,8 +39,16 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form 2 Subjects</title>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-student.css">
     <style>
+      .main_content {
+        width: calc(100% - 250px);
+        margin-left: 250px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
         .row {
             display: flex;
             flex-wrap: wrap; /* Ensure items wrap to new line */
@@ -94,13 +102,13 @@ $conn->close();
     <div class="sidebar">
         <h2><i class='bx bxs-user'></i> My profile</h2>
         <ul>
-            <li><a href="student-profile.html"><i class='bx bxs-id-card'></i> Profile</a></li>
-            <li><a href="class.html"><i class='bx bx-book-open'></i> Class</a></li>
+            <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
+            <li><a href="class.php"><i class='bx bx-book-open'></i> Class</a></li>
             <li><a href="subscribe.html"><i class='bx bx-receipt'></i> Subscribe</a></li>
-            <li><a href="timetable.html"><i class='bx bx-calendar'></i> Timetable</a></li>
-            <li><a href="bill.html"><i class='bx bx-money'></i> Bill</a></li>
-            <li><a href="announcement.html"><i class='bx bx-bell'></i> Announcement</a></li>
-            <li><a href="student-login.html"><i class='bx bx-log-out'></i> Logout</a></li>
+            <li><a href="timetable.php"><i class='bx bx-calendar'></i> Timetable</a></li>
+            <li><a href="bill.php"><i class='bx bx-money'></i> Bill</a></li>
+            <li><a href="announcement.php"><i class='bx bx-bell'></i> Announcement</a></li>
+            <li><a href="login-choice.html"><i class='bx bx-log-out'></i> Logout</a></li>
         </ul>
     </div>
     <div class="main_content">

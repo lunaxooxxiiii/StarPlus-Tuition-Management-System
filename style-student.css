@@ -54,3 +54,12 @@ body {
 .sidebar ul li:hover {
     background-color: #594f8d;
 }
+
+.main_content {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

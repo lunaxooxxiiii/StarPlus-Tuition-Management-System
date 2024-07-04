@@ -72,135 +72,96 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Timetable</title>
+    <title>Student Timetable</title><link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style-student.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            list-style: none;
-            text-decoration: none;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
+    .main_content {
+        width: calc(100% - 250px);
+        margin-left: 250px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .card-body {
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        body {
-            background-color: white;
-        }
+    .nav-tabs {
+        display: flex;
+        background-color: #5e8d8c;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
 
-        .wrapper {
-            display: flex;
-            position: relative;
-        }
+    .nav-item {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: auto;
+        color: #fff;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        cursor: pointer;
+        background-color: #5F9EA0;
+    }
 
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background: #23255d;
-            padding: 30px 0;
-            position: fixed;
-        }
+    .nav-item:hover {
+        background-color: #4b8282;
+    }
 
-        .sidebar h2 {
-            color: #fff;
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    .nav-item.active {
+        font-weight: bold;
+        background-color: #5F9EA0;
+        color: white;
+    }
 
-        .sidebar ul li {
-            padding: 15px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
+    .table-responsive {
+        overflow-x: auto;
+    }
 
-        .sidebar ul li a {
-            color: white;
-            display: block;
-            font-size: 20px;
-        }
+    .card-title {
+        color: #333;
+    }
 
-        .sidebar ul li:hover {
-            background-color: #594f8d;
-        }
+    .table td, .table th {
+        border-top: 1px solid #ccc;
+        padding: 10px;
+    }
 
-        .main_content {
-            width: calc(100% - 250px);
-            margin-left: 250px;
-            padding: 20px;
-        }
+    .text-primary {
+        color: black;
+    }
 
-        .card-body {
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    /* Add this CSS for hover effect */
+    .hover-row:hover {
+        background-color: #cce7e7;
+        cursor: pointer;
+    }
 
+    @media (max-width: 768px) {
         .nav-tabs {
-            display: flex;
-            background-color: #5e8d8c;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
+            flex-direction: column;
         }
 
         .nav-item {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: auto;
-            color: #fff;
-            border: 1px solid transparent;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-            cursor: pointer;
-            background-color: #5F9EA0;
+            margin-bottom: 10px;
+            margin-right: 0;
         }
+    }
+</style>
 
-        .nav-item:hover {
-            background-color: #4b8282;
-        }
-
-        .nav-item.active {
-            font-weight: bold;
-            background-color: #5F9EA0;
-            color: white;
-        }
-
-        .table-responsive {
-            overflow-x: auto;
-        }
-
-        .card-title {
-            color: #333;
-        }
-
-        .table td,
-        .table th {
-            border-top: 1px solid #ccc;
-            padding: 10px;
-        }
-
-        .text-primary {
-            color: black;
-        }
-
-        @media (max-width: 768px) {
-            .nav-tabs {
-                flex-direction: column;
-            }
-
-            .nav-item {
-                margin-bottom: 10px;
-                margin-right: 0;
-            }
-        }
-    </style>
     <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet"/>
 </head>
 
 <body>
     <div class="wrapper">
         <div class="sidebar">
-            <h2><i class="bx bxs-user"></i> My profile</h2>
+            <h2><i class="bx bxs-user"></i> My profile </h2>
             <ul>
                 <li><a href="student-profile.php"><i class='bx bxs-id-card'></i> Profile</a></li>
                 <li><a href="class.php"><i class='bx bx-book-open'></i> Class</a></li>
@@ -209,21 +170,21 @@ $conn->close();
                 <li><a href="bill.php"><i class='bx bx-money'></i> Bill</a></li>
                 <li><a href="announcement.php"><i class='bx bx-bell'></i> Announcement</a></li>
                 <li><a href="login-choice.html"><i class='bx bx-log-out'></i> Logout</a></li>
-            </ul>
+        </ul>
         </div>
         <div class="main_content">
             <div class="card-body">
                 <h3 class="card-title"><i class="bx bx-calendar"></i> Timetable</h3>
                 <br />
                 <div class="tab-content mt-2">
-                    <?php foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] as $day): ?>
+                    <?php foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday','Sunday'] as $day): ?>
                     <div class="tab-pane fade <?php echo $day == 'Monday' ? 'show active' : ''; ?>" id="<?php echo $day; ?>">
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
                                     <?php if (isset($classes[$day]) && count($classes[$day]) > 0): ?>
                                         <?php foreach ($classes[$day] as $class): ?>
-                                        <tr>
+                                        <tr class="hover-row">
                                             <th scope="row"><?php echo $class['ClassTime']; ?></th>
                                             <td>
                                                 <span class="text-primary"><?php echo $class['ClassDay']; ?></span><br />
@@ -233,7 +194,7 @@ $conn->close();
                                         <?php endforeach; ?>
                                     <?php else: ?>
                                     <tr>
-                                        <td>No classes scheduled for <?php echo $day; ?>.</td>
+                                        <td colspan="2">No classes scheduled for <?php echo $day; ?>.</td>
                                     </tr>
                                     <?php endif; ?>
                                 </tbody>

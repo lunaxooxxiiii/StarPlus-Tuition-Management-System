@@ -72,53 +72,9 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style-student.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            list-style: none;
-            text-decoration: none;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
-
-        body {
-            background-color: white;
-            display: flex;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .sidebar {
-            width: 250px;
-            background: #23255D;
-            padding: 30px 0;
-            position: fixed;
-            height: 100%;
-        }
-
-        .sidebar h2 {
-            color: #fff;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .sidebar ul li {
-            padding: 15px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .sidebar ul li a {
-            color: white;
-            display: block;
-            font-size: 20px;
-        }
-
-        .sidebar ul li:hover {
-            background-color: #594f8d;
-        }
-
         .main_content {
             width: calc(100% - 250px);
             margin-left: 250px;
@@ -194,6 +150,19 @@ $conn->close();
         .password-toggle {
             cursor: pointer;
         }
+
+        .greeting {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 16px;
+            color: #333;
+            background-color: #f0f0f0;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+        }
     </style>
     <script>
         function validateForm() {
@@ -224,6 +193,9 @@ $conn->close();
     </script>
 </head>
 <body>
+    <div class="greeting">
+        Hello, <?php echo htmlspecialchars($firstName) . ' ' . htmlspecialchars($lastName); ?>
+    </div>
     <div class="sidebar">
         <h2><i class='bx bxs-user'></i> My profile</h2>
         <ul>
@@ -250,7 +222,7 @@ $conn->close();
                     </div>
                     <div class="form-group">
                         <label for="email">Email :</label>
-                        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($studentEmail); ?>">
+                        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($studentEmail); ?>" readonly>
                     </div>
                     <div class="form-group">
                         <label for="password">Password :</label>
